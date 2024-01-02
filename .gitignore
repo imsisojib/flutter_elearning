@@ -42,3 +42,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase Configuration file should not go to public repo
+GoogleService-Info.plist
+google-services.json
