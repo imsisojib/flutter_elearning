@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate_code/src/core/application/token_service.dart
 import 'package:flutter_boilerplate_code/src/core/data/repositories/cache_repository_impl.dart';
 import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_api_interceptor.dart';
 import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_cache_repository.dart';
+import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/providers/provider_common.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
@@ -32,6 +33,7 @@ Future<void> init() async {
   ///PROVIDERS
   //region Providers
   sl.registerFactory(() => ProviderCommon(),);
+  sl.registerFactory(() => ProviderAccount(),);
 
   //interceptors
   sl.registerLazySingleton<IApiInterceptor>(() => ApiInterceptor(baseUrl: ConfigApi.baseUrl));   ///CHANGE SERVER HERE
