@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_boilerplate_code/constants.dart';
+import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
 import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_firebase_interceptor.dart';
+import 'package:flutter_boilerplate_code/src/features/account/data/entities/user_model.dart';
 import 'package:flutter_boilerplate_code/src/features/account/domain/interfaces/interface_repository_account.dart';
 
 class RepositoryAccount implements IRepositoryAccount {
@@ -36,9 +39,9 @@ class RepositoryAccount implements IRepositoryAccount {
   Future<UserCredential?> signInByPhoneByVerifyingOTP({
     required String otpCode,
     required String verificationId,
-  }) async{
+  }) async {
     AuthCredential authCredential = PhoneAuthProvider.credential(
-      verificationId: verificationId ,
+      verificationId: verificationId,
       smsCode: otpCode,
     );
 
@@ -47,5 +50,26 @@ class RepositoryAccount implements IRepositoryAccount {
     } catch (e) {
       return null;
     }
+  }
+
+  @override
+  Future<ApiResponse> setupUserInitialProfile({required String name, required String role}) async {
+    if (auth.currentUser?.uid == null) {
+      return ApiResponse(
+        statusCode: 401,
+        result: "Unauthorized User!",
+      );
+    }
+    return await firebaseInterceptor.insertDocument(
+      collectionName: Constants.tableUsers,
+      documentName: auth.currentUser!.uid,
+      json: {
+        UserModel.keyUid: auth.currentUser?.uid,
+        UserModel.keyFullName: name,
+        UserModel.keyPhoneNumber: auth.currentUser?.phoneNumber,
+        UserModel.keyRole: role,
+        UserModel.keyProfilePicture: auth.currentUser?.photoURL,
+      },
+    );
   }
 }

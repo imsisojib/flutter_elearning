@@ -46,6 +46,7 @@ class _MyAppState extends State<MyApp> {
           initialRoute: Provider.of<ProviderAccount>(context, listen: false).isUserLoggedIn()
               ? Routes.homeScreen
               : Routes.loginScreen,
+          //initialRoute: Routes.initialProfileSetupScreen,
           onGenerateRoute: RouterHelper.router.generator,
         );
       },

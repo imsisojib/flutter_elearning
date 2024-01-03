@@ -30,8 +30,26 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   }
 
   @override
-  Future<ApiResponse> insert({required String url, Map<String, String>? headers}) {
-    // TODO: implement write
+  Future<ApiResponse> insertCollection({
+    required String collectionName,
+    required Map<String, dynamic> json,
+  }) {
+    // TODO: implement insertCollection
     throw UnimplementedError();
+  }
+
+  @override
+  Future<ApiResponse> insertDocument({
+    required String collectionName,
+    required String documentName,
+    required Map<String, dynamic> json,
+  }) async{
+    try{
+      await db.collection(collectionName).doc(documentName).set(json);
+      return ApiResponse(statusCode: 200, result: "Saved Successfully!",);
+
+    }catch(e){
+      return ApiResponse(statusCode: 400, result: "Failed to update profile!",);
+    }
   }
 }

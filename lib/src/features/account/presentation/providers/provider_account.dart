@@ -65,12 +65,52 @@ class ProviderAccount extends ChangeNotifier {
       Fluttertoast.showToast(msg: "Sign in successful.");
       Navigator.pushNamedAndRemoveUntil(
         sl<NavigationService>().navigatorKey.currentContext!,
-        Routes.homeScreen,
+        Routes.initialProfileSetupScreen,
             (route) => false,
       );
     }else{
       Fluttertoast.showToast(msg: "Unable verify OTP code!");
     }
     loading = false;
+  }
+
+  void setupInitialProfile({String? name, String? role}) async{
+    if(name?.isEmpty??true){
+      Fluttertoast.showToast(msg: "Name can't be empty!",);
+      return;
+    }
+    if(role?.isEmpty??true){
+      Fluttertoast.showToast(msg: "Please select your joining type!",);
+      return;
+    }
+
+    loading = true;
+
+    var response = await repositoryAccount.setupUserInitialProfile(
+      name: name!,
+      role: role!,
+    );
+
+    if(response.statusCode==200){
+      //profile updated
+      Fluttertoast.showToast(msg: response.result,);
+      Navigator.pushNamedAndRemoveUntil(
+        sl<NavigationService>().navigatorKey.currentContext!,
+        Routes.homeScreen,
+            (route) => false,
+      );
+    }else if(response.statusCode==401){
+      Fluttertoast.showToast(msg: response.result,);
+      Navigator.pushNamedAndRemoveUntil(
+        sl<NavigationService>().navigatorKey.currentContext!,
+        Routes.loginScreen,
+            (route) => false,
+      );
+    }else{
+      Fluttertoast.showToast(msg: response.result,);
+    }
+
+    loading = false;
+
   }
 }

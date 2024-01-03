@@ -46,6 +46,10 @@ class AppColors {
   static const Color offWhiteColor = Color(0xffB9B9BB);
   static const Color orangeColor = Color(0xffFD650D);*/
 
+  //popup colors
+  static const Color popupBackground = Color(0xff4B3171);
+  static const Color popupStroke = Color(0xff8148C3);
+
   //#region MUSEIQ Color Palette
   static const Color red = Color(0xffCC2B51);
   static const Color green = Color(0xffB2EE96);

@@ -57,7 +57,7 @@ class BasicButton extends StatelessWidget {
             Text(
               buttonText,
               style: buttonTextStyle ??
-                  theme.textTheme.bodySmall?.copyWith(
+                  theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
               textAlign: textAlign,
