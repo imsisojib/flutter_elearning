@@ -18,4 +18,8 @@ abstract class IRepositoryAccount {
     required String name,
     required String role,
   });
+
+  Future<ApiResponse> fetchMyProfile();
+
+  Future<ApiResponse> fetchUserProfile(String uid);
 }

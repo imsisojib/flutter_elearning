@@ -24,9 +24,13 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   }
 
   @override
-  Future<ApiResponse> read({required String endPoint, Map<String, String>? headers, Map<String, dynamic>? body}) {
-    // TODO: implement read
-    throw UnimplementedError();
+  Future<ApiResponse> readDocument({required String collectionName, required String documentId,}) async {
+    DocumentSnapshot docSnap = await db.collection(collectionName).doc(documentId).get();
+    if(docSnap.exists){
+      return ApiResponse(statusCode: 200, result: docSnap.data());
+    }else{
+      return ApiResponse(statusCode: 404,);
+    }
   }
 
   @override
@@ -41,11 +45,11 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   @override
   Future<ApiResponse> insertDocument({
     required String collectionName,
-    required String documentName,
+    required String documentId,
     required Map<String, dynamic> json,
   }) async{
     try{
-      await db.collection(collectionName).doc(documentName).set(json);
+      await db.collection(collectionName).doc(documentId).set(json);
       return ApiResponse(statusCode: 200, result: "Saved Successfully!",);
 
     }catch(e){

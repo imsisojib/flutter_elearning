@@ -11,4 +11,17 @@ class UserModel{
   String? role;
   String? phoneNumber;
   String? profilePicture;
+
+  UserModel.fromJson(Map<String, Object?> json){
+    fullName = json[keyFullName] as String?;
+    uid = json[keyUid] as String?;
+    phoneNumber = json[keyPhoneNumber] as String?;
+    role = json[keyRole] as String?;
+    profilePicture = json[keyProfilePicture] as String?;
+  }
+
+  @override
+  String toString() {
+    return 'UserModel{uid: $uid, fullName: $fullName, role: $role, phoneNumber: $phoneNumber, profilePicture: $profilePicture}';
+  }
 }

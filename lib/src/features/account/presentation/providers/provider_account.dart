@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/di_container.dart';
 import 'package:flutter_boilerplate_code/src/core/application/navigation_service.dart';
+import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
+import 'package:flutter_boilerplate_code/src/features/account/data/entities/user_model.dart';
 import 'package:flutter_boilerplate_code/src/features/account/domain/interfaces/interface_repository_account.dart';
 import 'package:flutter_boilerplate_code/src/helpers/debugger_helper.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
@@ -15,13 +17,20 @@ class ProviderAccount extends ChangeNotifier {
   //states
   bool _loading = false;
   String? _verficationId;
+  UserModel? _currentUser;
 
   //getters
   bool get loading => _loading;
+  UserModel? get currentUser => _currentUser;
 
   //setters
   set loading(bool flag) {
     _loading = flag;
+    notifyListeners();
+  }
+
+  set currentUser(UserModel? model){
+    _currentUser = model;
     notifyListeners();
   }
 
@@ -112,5 +121,18 @@ class ProviderAccount extends ChangeNotifier {
 
     loading = false;
 
+  }
+
+  void fetchMyProfile() async{
+    loading = true;
+    ApiResponse response = await repositoryAccount.fetchMyProfile();
+    if(response.statusCode==200){
+      _currentUser = UserModel.fromJson(response.result,);
+    }else if(response.statusCode==401){
+      //login required
+    }
+    _currentUser.toString();
+
+    loading = false;
   }
 }

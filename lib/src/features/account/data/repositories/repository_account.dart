@@ -62,7 +62,7 @@ class RepositoryAccount implements IRepositoryAccount {
     }
     return await firebaseInterceptor.insertDocument(
       collectionName: Constants.tableUsers,
-      documentName: auth.currentUser!.uid,
+      documentId: auth.currentUser!.uid,
       json: {
         UserModel.keyUid: auth.currentUser?.uid,
         UserModel.keyFullName: name,
@@ -70,6 +70,25 @@ class RepositoryAccount implements IRepositoryAccount {
         UserModel.keyRole: role,
         UserModel.keyProfilePicture: auth.currentUser?.photoURL,
       },
+    );
+  }
+
+  @override
+  Future<ApiResponse> fetchMyProfile() async {
+    if (auth.currentUser?.uid == null) {
+      return ApiResponse(
+        statusCode: 401,
+        result: "Unauthorized User!",
+      );
+    }
+    return fetchUserProfile(auth.currentUser!.uid);
+  }
+
+  @override
+  Future<ApiResponse> fetchUserProfile(String uid) {
+    return firebaseInterceptor.readDocument(
+      collectionName: Constants.tableUsers,
+      documentId: uid,
     );
   }
 }

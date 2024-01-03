@@ -1,10 +1,9 @@
 import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
 
 abstract class IFirebaseDBInterceptor {
-  Future<ApiResponse> read({
-    required String endPoint,
-    Map<String, String>? headers,
-    Map<String, dynamic>? body,
+  Future<ApiResponse> readDocument({
+    required String collectionName,
+    required String documentId,
   });
 
   Future<ApiResponse> insertCollection({
@@ -14,7 +13,7 @@ abstract class IFirebaseDBInterceptor {
 
   Future<ApiResponse> insertDocument({
     required String collectionName,
-    required String documentName,
+    required String documentId,
     required Map<String, dynamic> json,
   });
 
