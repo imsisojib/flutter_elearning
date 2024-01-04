@@ -71,12 +71,25 @@ class ProviderAccount extends ChangeNotifier {
     loading = true;
     UserCredential? userCredential = await repositoryAccount.signInByPhoneByVerifyingOTP(otpCode: otpCode, verificationId: _verficationId??"");
     if(userCredential?.user!=null){
-      Fluttertoast.showToast(msg: "Sign in successful.");
-      Navigator.pushNamedAndRemoveUntil(
-        sl<NavigationService>().navigatorKey.currentContext!,
-        Routes.initialProfileSetupScreen,
-            (route) => false,
-      );
+      //now check this user data already exists or not,
+      //if exists just navigate to home otherwise go to initial profile setup page
+      var profileData = await repositoryAccount.fetchMyProfile();
+      if(profileData.statusCode!=200){
+        //means data not found
+        Fluttertoast.showToast(msg: "Sign in successful.");
+        Navigator.pushNamedAndRemoveUntil(
+          sl<NavigationService>().navigatorKey.currentContext!,
+          Routes.initialProfileSetupScreen,
+              (route) => false,
+        );
+      }else{
+        Fluttertoast.showToast(msg: "Sign in successful.");
+        Navigator.pushNamedAndRemoveUntil(
+          sl<NavigationService>().navigatorKey.currentContext!,
+          Routes.homeScreen,
+              (route) => false,
+        );
+      }
     }else{
       Fluttertoast.showToast(msg: "Unable verify OTP code!");
     }
@@ -108,6 +121,7 @@ class ProviderAccount extends ChangeNotifier {
         Routes.homeScreen,
             (route) => false,
       );
+
     }else if(response.statusCode==401){
       Fluttertoast.showToast(msg: response.result,);
       Navigator.pushNamedAndRemoveUntil(
