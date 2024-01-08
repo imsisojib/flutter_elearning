@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate_code/src/core/data/enums/dialogtype_enum.dart';
+import 'package:flutter_boilerplate_code/src/helpers/widget_helper.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,6 +19,8 @@ class AdvanceDatePicker extends StatefulWidget {
   final Function? validator;
   final String? initialValue;
   final Color? backgroundColor;
+
+  ///returns YYYY-MM-DD
 
   const AdvanceDatePicker({
     Key? key,
@@ -46,7 +50,6 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
   @override
   void initState() {
     controller ??= TextEditingController();
-
     super.initState();
   }
 
@@ -59,6 +62,9 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    controller?.text = widget.initialValue??"";
+
     return Column(
       children: [
         widget.titleText == null
@@ -103,9 +109,18 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: TextFormField(
-            initialValue: widget.initialValue,
+            //initialValue: widget.initialValue,
             controller: controller,
-            onChanged: (value) {
+            onFieldSubmitted: (value) {
+              RegExp dateRegex = RegExp(r'^\d{4}-\d{2}-\d{2}$');
+              if (!dateRegex.hasMatch(value)) {
+                WidgetHelper.showNotificationToast(
+                  "Warning!",
+                  "Invalid format!",
+                  DialogTypeEnum.warning,
+                );
+                return;
+              }
               widget.onPicked?.call(value);
             },
             cursorColor: AppColors.red,
@@ -129,8 +144,8 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
                   DateTime? pickedDate = await showDatePicker(
                     context: context,
                     initialDate: current,
-                    firstDate: DateTime(current.year - 1),
-                    lastDate: DateTime(current.year + 1),
+                    firstDate: DateTime(1920),
+                    lastDate: current,
                   );
                   if (pickedDate != null) {
                     String pickedDateString = "${pickedDate.year}-${pickedDate.month.toString().padLeft(2,'0')}-${pickedDate.day.toString().padLeft(2,'0')}";

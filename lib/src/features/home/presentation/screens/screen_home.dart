@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate_code/src/core/data/enums/e_bottomnav.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/bottom_navigationbar/bottom_navigationbar.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_button.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/image/circular_image.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
@@ -97,7 +99,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 )
                               ],
                             ),
-                            Icon(
+                            const Icon(
                               Icons.notifications_none_outlined,
                               color: AppColors.grey600,
                             ),
@@ -105,32 +107,11 @@ class _ScreenHomeState extends State<ScreenHome> {
                         ),
                       ),
               ),
-              SliverFillRemaining(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    BasicButton(
-                      buttonText: "Logout",
-                      width: 200,
-                      onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          Routes.loginScreen,
-                          (route) => false,
-                        );
-                      },
-                    ),
-                    SizedBox(
-                      height: 100,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                  ],
-                ),
-              )
             ],
           )),
+          bottomNavigationBar: const CustomBottomNavigationBar(
+            activeTab: EBottomNav.home,
+          ),
         );
       },
     );
