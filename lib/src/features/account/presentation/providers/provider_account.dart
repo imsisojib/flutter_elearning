@@ -145,8 +145,8 @@ class ProviderAccount extends ChangeNotifier {
 
   }
 
-  void fetchMyProfile() async{
-    if(_currentUser!=null) return;  //no need to fetch data if already data available
+  void fetchMyProfile({bool forceUpdate = false}) async{
+    if(_currentUser!=null && !forceUpdate) return;  //no need to fetch data if already data available
     loading = true;
     ApiResponse response = await repositoryAccount.fetchMyProfile();
     if(response.statusCode==200){
@@ -173,7 +173,7 @@ class ProviderAccount extends ChangeNotifier {
     var apiResponse = await repositoryAccount.uploadMyProfilePicture(path);
     if(apiResponse.statusCode==200){
       WidgetHelper.showNotificationToast("Successful!", "Profile picture is updated successfully!", DialogTypeEnum.success,);
-      fetchMyProfile();
+      fetchMyProfile(forceUpdate: true,);
     }else if(apiResponse.statusCode==401){
       WidgetHelper.showNotificationToast("Failed!", "Login required!", DialogTypeEnum.failed,);
       logout();
@@ -202,7 +202,7 @@ class ProviderAccount extends ChangeNotifier {
     if(response.statusCode==200){
       //profile updated
       Fluttertoast.showToast(msg: response.result,);
-      fetchMyProfile();
+      fetchMyProfile(forceUpdate: true,);
 
     }else if(response.statusCode==401){
       Fluttertoast.showToast(msg: response.result,);
