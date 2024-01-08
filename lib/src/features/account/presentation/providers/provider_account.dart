@@ -148,4 +148,13 @@ class ProviderAccount extends ChangeNotifier {
 
     loading = false;
   }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushNamedAndRemoveUntil(
+      sl<NavigationService>().navigatorKey.currentContext!,
+      Routes.loginScreen,
+          (route) => false,
+    );
+  }
 }
