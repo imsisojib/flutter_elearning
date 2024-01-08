@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_boilerplate_code/src/config/config_api.dart';
 import 'package:flutter_boilerplate_code/src/core/application/api_interceptor.dart';
 import 'package:flutter_boilerplate_code/src/core/application/navigation_service.dart';
@@ -28,6 +29,7 @@ Future<void> init() async {
   //firebase
   sl.registerLazySingleton(() => FirebaseAuth.instance);
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
+  sl.registerLazySingleton(() => FirebaseStorage.instance);
 
   ///REPOSITORIES
   //#region Repositories
@@ -38,7 +40,6 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<IRepositoryAccount>(
     () => RepositoryAccount(
-      auth: sl(),
       firebaseInterceptor: sl(),
     ),
   );
@@ -61,6 +62,8 @@ Future<void> init() async {
   sl.registerLazySingleton<IFirebaseDBInterceptor>(
     () => FirebaseDBInterceptor(
       db: sl(),
+      storage: sl(),
+      auth: sl(),
     ),
   );
   sl.registerLazySingleton<IApiInterceptor>(

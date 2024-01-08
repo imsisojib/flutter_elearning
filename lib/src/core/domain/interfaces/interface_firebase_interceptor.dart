@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
 
 abstract class IFirebaseDBInterceptor {
+
+  FirebaseAuth getAuth();
+
   Future<ApiResponse> readDocument({
     required String collectionName,
     required String documentId,
@@ -15,6 +19,7 @@ abstract class IFirebaseDBInterceptor {
     required String collectionName,
     required String documentId,
     required Map<String, dynamic> json,
+    bool mergeData = false,
   });
 
   Future<ApiResponse> delete({
@@ -28,4 +33,11 @@ abstract class IFirebaseDBInterceptor {
     Map<String, String>? headers,
     dynamic body,
   });
+
+  Future<ApiResponse> uploadPhoto({
+    required String filePath,
+    required String folderName,
+    required String fileName,
+  });
+
 }

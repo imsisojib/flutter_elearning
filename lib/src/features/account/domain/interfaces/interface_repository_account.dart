@@ -22,4 +22,6 @@ abstract class IRepositoryAccount {
   Future<ApiResponse> fetchMyProfile();
 
   Future<ApiResponse> fetchUserProfile(String uid);
+
+  Future<ApiResponse> uploadMyProfilePicture(String path);
 }

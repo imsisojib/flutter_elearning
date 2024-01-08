@@ -7,11 +7,9 @@ import 'package:flutter_boilerplate_code/src/features/account/domain/interfaces/
 
 class RepositoryAccount implements IRepositoryAccount {
   final IFirebaseDBInterceptor firebaseInterceptor;
-  final FirebaseAuth auth;
 
   RepositoryAccount({
     required this.firebaseInterceptor,
-    required this.auth,
   });
 
   @override
@@ -21,18 +19,18 @@ class RepositoryAccount implements IRepositoryAccount {
     Function? onCodeSent,
     Function? onError,
   }) {
-    auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      timeout: const Duration(seconds: 60),
-      verificationCompleted: (AuthCredential authCredential) {},
-      codeAutoRetrievalTimeout: (String verificationId) {},
-      verificationFailed: (FirebaseAuthException error) {
-        onVerificationFailed?.call(error);
-      },
-      codeSent: (String verificationId, int? forceResendingToken) {
-        onCodeSent?.call(verificationId, forceResendingToken);
-      },
-    );
+    firebaseInterceptor.getAuth().verifyPhoneNumber(
+          phoneNumber: phoneNumber,
+          timeout: const Duration(seconds: 60),
+          verificationCompleted: (AuthCredential authCredential) {},
+          codeAutoRetrievalTimeout: (String verificationId) {},
+          verificationFailed: (FirebaseAuthException error) {
+            onVerificationFailed?.call(error);
+          },
+          codeSent: (String verificationId, int? forceResendingToken) {
+            onCodeSent?.call(verificationId, forceResendingToken);
+          },
+        );
   }
 
   @override
@@ -46,7 +44,7 @@ class RepositoryAccount implements IRepositoryAccount {
     );
 
     try {
-      return await auth.signInWithCredential(authCredential);
+      return await firebaseInterceptor.getAuth().signInWithCredential(authCredential);
     } catch (e) {
       return null;
     }
@@ -54,7 +52,7 @@ class RepositoryAccount implements IRepositoryAccount {
 
   @override
   Future<ApiResponse> setupUserInitialProfile({required String name, required String role}) async {
-    if (auth.currentUser?.uid == null) {
+    if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
       return ApiResponse(
         statusCode: 401,
         result: "Unauthorized User!",
@@ -62,26 +60,26 @@ class RepositoryAccount implements IRepositoryAccount {
     }
     return await firebaseInterceptor.insertDocument(
       collectionName: Constants.tableUsers,
-      documentId: auth.currentUser!.uid,
+      documentId: firebaseInterceptor.getAuth().currentUser!.uid,
       json: {
-        UserModel.keyUid: auth.currentUser?.uid,
+        UserModel.keyUid: firebaseInterceptor.getAuth().currentUser?.uid,
         UserModel.keyFullName: name,
-        UserModel.keyPhoneNumber: auth.currentUser?.phoneNumber,
+        UserModel.keyPhoneNumber: firebaseInterceptor.getAuth().currentUser?.phoneNumber,
         UserModel.keyRole: role,
-        UserModel.keyProfilePicture: auth.currentUser?.photoURL,
+        UserModel.keyProfilePicture: firebaseInterceptor.getAuth().currentUser?.photoURL,
       },
     );
   }
 
   @override
   Future<ApiResponse> fetchMyProfile() async {
-    if (auth.currentUser?.uid == null) {
+    if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
       return ApiResponse(
         statusCode: 401,
         result: "Unauthorized User!",
       );
     }
-    return fetchUserProfile(auth.currentUser!.uid);
+    return fetchUserProfile(firebaseInterceptor.getAuth().currentUser!.uid);
   }
 
   @override
@@ -90,5 +88,37 @@ class RepositoryAccount implements IRepositoryAccount {
       collectionName: Constants.tableUsers,
       documentId: uid,
     );
+  }
+
+  @override
+  Future<ApiResponse> uploadMyProfilePicture(String path) async {
+    if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
+      return ApiResponse(
+        statusCode: 401,
+        result: "Unauthorized User!",
+      );
+    }
+    //first upload profile picture
+    //then update users/uid/profile_picture value
+    var apiResponse = await firebaseInterceptor.uploadPhoto(
+      filePath: path,
+      folderName: Constants.storageProfilePictures,
+      fileName: firebaseInterceptor.getAuth().currentUser!.uid,
+    );
+
+    if (apiResponse.statusCode == 200) {
+      //now update the download link to user table
+      return await firebaseInterceptor.insertDocument(
+        collectionName: Constants.tableUsers,
+        documentId: firebaseInterceptor.getAuth().currentUser!.uid,
+        json: {
+          UserModel.keyProfilePicture: apiResponse.result,  //this result has download link
+        },
+        mergeData: true, //otherwise previous data will be gone
+      );
+
+    } else {
+      return apiResponse;
+    }
   }
 }

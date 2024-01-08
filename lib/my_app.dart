@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate_code/src/resources/app_themes.dart';
 import 'package:flutter_boilerplate_code/src/routes/router_helper.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
 import 'di_container.dart';
@@ -34,10 +35,12 @@ class _MyAppState extends State<MyApp> {
           navigatorKey: navigationService.navigatorKey,
           debugShowCheckedModeBanner: false,
           builder: (context, child) {
-            return ScrollConfiguration(
-              //Removes the whole app's scroll glow
-              behavior: AppBehavior(),
-              child: child!,
+            return OverlaySupport.global(
+              child: ScrollConfiguration(
+                //Removes the whole app's scroll glow
+                behavior: AppBehavior(),
+                child: child!,
+              ),
             );
           },
           title: 'MuseIQ',
