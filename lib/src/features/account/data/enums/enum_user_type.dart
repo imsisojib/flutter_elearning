@@ -1,5 +1,5 @@
 enum EUserRole{
   Student,
   Teacher,
-  Parent,
+  Guardian,
 }

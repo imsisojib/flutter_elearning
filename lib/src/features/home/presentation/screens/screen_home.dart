@@ -99,7 +99,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 )
                               ],
                             ),
-                            Icon(
+                            const Icon(
                               Icons.notifications_none_outlined,
                               color: AppColors.grey600,
                             ),

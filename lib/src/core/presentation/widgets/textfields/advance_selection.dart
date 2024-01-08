@@ -41,22 +41,26 @@ class AdvanceSelection extends StatefulWidget {
 }
 
 class _AdvanceSelectionState extends State<AdvanceSelection> {
-
+  TextEditingController? controller;
 
   @override
   void initState() {
-
+    controller = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
+    controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    controller?.text = widget.initialValue??"";
+
     return Column(
       children: [
         widget.titleText == null
@@ -105,7 +109,8 @@ class _AdvanceSelectionState extends State<AdvanceSelection> {
               widget.onStartSelection?.call();
             },
             child: TextFormField(
-              initialValue: widget.initialValue,
+              controller: controller,
+              //initialValue: widget.initialValue,
               cursorColor: AppColors.red,
               style: theme.textTheme.bodySmall,
               obscureText: widget.obscureText,

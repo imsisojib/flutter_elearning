@@ -72,6 +72,22 @@ class RepositoryAccount implements IRepositoryAccount {
   }
 
   @override
+  Future<ApiResponse> updateMyProfileInfo({required Map<String, dynamic> json}) async{
+    if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
+      return ApiResponse(
+        statusCode: 401,
+        result: "Unauthorized User!",
+      );
+    }
+    return await firebaseInterceptor.insertDocument(
+      collectionName: Constants.tableUsers,
+      documentId: firebaseInterceptor.getAuth().currentUser!.uid,
+      mergeData: true,  //if false then previous data will be gone
+      json: json,
+    );
+  }
+
+  @override
   Future<ApiResponse> fetchMyProfile() async {
     if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
       return ApiResponse(

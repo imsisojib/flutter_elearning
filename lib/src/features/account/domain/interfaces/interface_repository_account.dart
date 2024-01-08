@@ -19,6 +19,8 @@ abstract class IRepositoryAccount {
     required String role,
   });
 
+  Future<ApiResponse> updateMyProfileInfo({required Map<String, dynamic> json});
+
   Future<ApiResponse> fetchMyProfile();
 
   Future<ApiResponse> fetchUserProfile(String uid);

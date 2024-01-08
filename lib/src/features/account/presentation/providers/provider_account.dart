@@ -146,6 +146,7 @@ class ProviderAccount extends ChangeNotifier {
   }
 
   void fetchMyProfile() async{
+    if(_currentUser!=null) return;  //no need to fetch data if already data available
     loading = true;
     ApiResponse response = await repositoryAccount.fetchMyProfile();
     if(response.statusCode==200){
@@ -181,4 +182,41 @@ class ProviderAccount extends ChangeNotifier {
     }
     submitLoading = false;
   }
+
+  void updateMyProfileInfo() async{
+    if(currentUser?.fullName?.isEmpty??true){
+      Fluttertoast.showToast(msg: "Name can't be empty!",);
+      return;
+    }
+
+    submitLoading = true;
+
+    var response = await repositoryAccount.updateMyProfileInfo(
+      json: {
+        UserModel.keyFullName : _currentUser?.fullName,
+        UserModel.keyCountry : _currentUser?.country,
+        UserModel.keyBirthdate : _currentUser?.birthdate,
+      }
+    );
+
+    if(response.statusCode==200){
+      //profile updated
+      Fluttertoast.showToast(msg: response.result,);
+      fetchMyProfile();
+
+    }else if(response.statusCode==401){
+      Fluttertoast.showToast(msg: response.result,);
+      Navigator.pushNamedAndRemoveUntil(
+        sl<NavigationService>().navigatorKey.currentContext!,
+        Routes.loginScreen,
+            (route) => false,
+      );
+    }else{
+      Fluttertoast.showToast(msg: response.result,);
+    }
+
+    submitLoading = false;
+
+  }
+
 }
