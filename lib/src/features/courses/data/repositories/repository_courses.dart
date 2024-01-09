@@ -4,6 +4,7 @@ import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart'
 import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_firebase_interceptor.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/data/entities/course.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/data/entities/course_category.dart';
+import 'package:flutter_boilerplate_code/src/features/courses/data/enums/enum_course_status.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/data/requests/requestbody_course.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/domain/interface_repository_courses.dart';
 
@@ -48,6 +49,7 @@ class RepositoryCourses implements IRepositoryCourses {
         Course.keyTotalEnrolled: course.totalEnrolled,
         Course.keyTotalClass: course.totalClass,
         Course.keyRating: course.rating,
+        Course.keyStatus: ECourseStatus.pending.name,
       },
     );
   }

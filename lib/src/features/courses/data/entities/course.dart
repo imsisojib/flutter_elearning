@@ -14,6 +14,7 @@ class Course{
   static const String keyTotalEnrolled = "total_enrolled";
   static const String keyTotalClass = "total_class";
   static const String keyRating = "rating";
+  static const String keyStatus = "status";
 
   String? id;
   String? name;
@@ -26,6 +27,7 @@ class Course{
   int totalEnrolled = 0;
   int totalClass = 0;
   int rating = 0;
+  String? status;   //pending, approved, rejected,
 
   UserModel? teacher; //local purpose: for showing data,
   CourseCategory? category; //local purpose: for showing data,
@@ -44,6 +46,7 @@ class Course{
     totalEnrolled = json[keyTotalEnrolled] as int;
     totalClass = json[keyTotalClass] as int;
     rating = json[keyRating] as int;
+    status = json[keyStatus] as String?;
   }
 
   @override
