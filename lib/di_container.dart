@@ -13,6 +13,9 @@ import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_fi
 import 'package:flutter_boilerplate_code/src/features/account/data/repositories/repository_account.dart';
 import 'package:flutter_boilerplate_code/src/features/account/domain/interfaces/interface_repository_account.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/courses/data/repositories/repository_courses.dart';
+import 'package:flutter_boilerplate_code/src/features/courses/domain/interface_repository_courses.dart';
+import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/providers/provider_common.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
@@ -43,6 +46,11 @@ Future<void> init() async {
       firebaseInterceptor: sl(),
     ),
   );
+  sl.registerLazySingleton<IRepositoryCourses>(
+    () => RepositoryCourses(
+      firebaseInterceptor: sl(),
+    ),
+  );
   //#endregion
 
   ///USE-CASES
@@ -51,14 +59,11 @@ Future<void> init() async {
 
   ///PROVIDERS
   //region Providers
-  sl.registerFactory(
-    () => ProviderCommon(),
-  );
-  sl.registerFactory(
-    () => ProviderAccount(repositoryAccount: sl()),
-  );
+  sl.registerFactory(() => ProviderCommon());
+  sl.registerFactory(() => ProviderAccount(repositoryAccount: sl()));
+  sl.registerFactory(() => ProviderCourses(repositoryCourses: sl()));
 
-  //interceptors
+  ///Interceptors
   sl.registerLazySingleton<IFirebaseDBInterceptor>(
     () => FirebaseDBInterceptor(
       db: sl(),

@@ -5,10 +5,19 @@ abstract class IFirebaseDBInterceptor {
 
   FirebaseAuth getAuth();
 
+  String getDocumentId({
+    required String collectionName,
+  });
+
   Future<ApiResponse> readDocument({
     required String collectionName,
     required String documentId,
   });
+
+  Future<ApiResponse> readCollection({
+    required String collectionName,
+  });
+
 
   Future<ApiResponse> insertCollection({
     required String collectionName,

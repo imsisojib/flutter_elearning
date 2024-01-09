@@ -4,6 +4,7 @@ import 'package:flutter_boilerplate_code/my_app.dart';
 import 'package:flutter_boilerplate_code/src/core/application/token_service.dart';
 import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_cache_repository.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/providers/provider_common.dart';
 import 'di_container.dart' as di;
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => di.sl<ProviderCommon>()),
         ChangeNotifierProvider(create: (context) => di.sl<ProviderAccount>()),
+        ChangeNotifierProvider(create: (context) => di.sl<ProviderCourses>()),
       ],
       child: const MyApp(),
     ),

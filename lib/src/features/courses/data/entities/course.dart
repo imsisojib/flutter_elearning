@@ -30,6 +30,7 @@ class Course{
   UserModel? teacher; //local purpose: for showing data,
   CourseCategory? category; //local purpose: for showing data,
 
+  Course();
 
   Course.fromJson(Map<String, Object?> json){
     id = json[keyId] as String?;

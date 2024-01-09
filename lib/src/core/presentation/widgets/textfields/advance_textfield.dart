@@ -50,36 +50,31 @@ class AdvanceTextFormField extends StatelessWidget {
         titleText == null
             ? const SizedBox()
             : Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            titleText ?? "",
-                            style: theme.textTheme.labelMedium?.copyWith(
-                              color: AppColors.grey400,
-                            ),
-                          ),
-                          isMandatoryField
-                              ? Text(
-                                  " *",
-                                  style: theme.textTheme.labelMedium?.copyWith(
-                                    color: AppColors.red,
-                                  ),
-                                )
-                              : const Text(""),
-                          Text(
-                            additionalTittleText ?? "",
-                            style: theme.textTheme.labelSmall,
-                          ),
-                          SizedBox(
-                            width: 8.w,
-                          ),
-                        ],
+                      Text(
+                        titleText ?? "",
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: AppColors.grey400,
+                        ),
                       ),
+                      isMandatoryField
+                          ? Text(
+                        " *",
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: AppColors.red,
+                        ),
+                      )
+                          : const Text(""),
                     ],
+                  ),
+                  additionalTittleText==null?const SizedBox(): Text(
+                    additionalTittleText ?? "",
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: AppColors.grey600,
+                    ),
                   ),
                   const SizedBox(
                     height: 2,
