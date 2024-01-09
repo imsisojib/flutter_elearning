@@ -14,5 +14,6 @@ class Routes {
 
   ///COURSES
   static const String courseAddScreen = "/courses/add";
+  static const String courseUpdateScreen = "/courses/update";
   static const String courseCategorySelectScreen = "/courses/categories/select";
 }

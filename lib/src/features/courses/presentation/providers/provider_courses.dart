@@ -60,6 +60,16 @@ class ProviderCourses extends ChangeNotifier {
     notifyListeners();
   }
 
+  void startUpdateCourse(Course course) {
+    _requestBodyCourse = RequestBodyCourse.fromCourse(course);
+    //setting teacher id
+    _requestBodyCourse?.teacherId =
+        Provider.of<ProviderAccount>(sl<NavigationService>().navigatorKey.currentContext!, listen: false)
+            .currentUser
+            ?.uid;
+    notifyListeners();
+  }
+
   void createCourse() async {
     if (_requestBodyCourse?.name?.isEmpty ?? true) {
       WidgetHelper.showNotificationToast(
@@ -95,7 +105,7 @@ class ProviderCourses extends ChangeNotifier {
         "Course has created successfully.",
         DialogTypeEnum.success,
       );
-      fetchMyCourses();
+      fetchMyCourses(forceFetch: true,);
       _requestBodyCourse = null;  //clear data
     } else if (apiResponse.statusCode == 401) {
       WidgetHelper.showNotificationToast(
@@ -133,5 +143,52 @@ class ProviderCourses extends ChangeNotifier {
     fetchMyCourses(forceFetch: true,);
 
 
+  }
+
+  Future<void> updateCourse() async {
+    if (_requestBodyCourse?.name?.isEmpty ?? true) {
+      WidgetHelper.showNotificationToast(
+        "Warning!",
+        "Course name can't be empty!",
+        DialogTypeEnum.warning,
+      );
+      return;
+    }
+
+    if (_requestBodyCourse?.price == null) {
+      WidgetHelper.showNotificationToast(
+        "Warning!",
+        "Price can't be empty!",
+        DialogTypeEnum.warning,
+      );
+      return;
+    }
+
+    submitLoading = true;
+    var apiResponse = await repositoryCourses.updateCourse(_requestBodyCourse!);
+    if (apiResponse.statusCode == 200) {
+      Navigator.pop(sl<NavigationService>().navigatorKey.currentContext!);
+      WidgetHelper.showNotificationToast(
+        "Success",
+        "Course has updated successfully.",
+        DialogTypeEnum.success,
+      );
+      fetchMyCourses(forceFetch: true);
+      _requestBodyCourse = null;  //clear data
+    } else if (apiResponse.statusCode == 401) {
+      WidgetHelper.showNotificationToast(
+        "Unauthorized",
+        "Login Required!",
+        DialogTypeEnum.failed,
+      );
+      Provider.of<ProviderAccount>(sl<NavigationService>().navigatorKey.currentContext!, listen: false).logout();
+    } else {
+      WidgetHelper.showNotificationToast(
+        "Failed",
+        "Unable to update course.",
+        DialogTypeEnum.failed,
+      );
+    }
+    submitLoading = false;
   }
 }

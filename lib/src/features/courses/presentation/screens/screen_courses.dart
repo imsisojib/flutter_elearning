@@ -100,7 +100,8 @@ class _ScreenCoursesState extends State<ScreenCourses> {
                                                   children: [
                                                     IconButton(
                                                       onPressed: () {
-
+                                                        providerCourses.startUpdateCourse(providerCourses.myCourses[index]);
+                                                        Navigator.pushNamed(context, Routes.courseUpdateScreen,);
                                                       },
                                                       icon: Icon(
                                                         Icons.edit,

@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate_code/src/features/account/presentation/scree
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_otp_verfication.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_profile_edit.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_course_add.dart';
+import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_course_update.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_select_course_category.dart';
 import 'package:flutter_boilerplate_code/src/features/errors/presentation/screens/screen_error.dart';
@@ -65,6 +66,10 @@ class RouterHelper {
   Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
     return const ScreenCourseAdd();
   });
+  static final Handler _courseUpdateScreenHandler =
+  Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
+    return const ScreenCourseUpdate();
+  });
   static final Handler _courseCategorySelectScreenHandler =
   Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
     return const ScreenSelectCourseCategory();
@@ -92,6 +97,7 @@ class RouterHelper {
 
     ///COURSES
     router.define(Routes.courseAddScreen, handler: _courseAddScreenHandler, transitionType: TransitionType.cupertino);
+    router.define(Routes.courseUpdateScreen, handler: _courseUpdateScreenHandler, transitionType: TransitionType.cupertino);
     router.define(Routes.courseCategorySelectScreen, handler: _courseCategorySelectScreenHandler, transitionType: TransitionType.cupertino);
 
   }

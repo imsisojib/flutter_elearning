@@ -53,6 +53,22 @@ class RepositoryCourses implements IRepositoryCourses {
   }
 
   @override
+  Future<ApiResponse> updateCourse(RequestBodyCourse course) async {
+    return await firebaseInterceptor.insertDocument(
+      collectionName: Constants.tableCourses,
+      documentId: course.id!,
+      json: {
+        Course.keyName: course.name,
+        Course.keyDescription: course.description,
+        Course.keyPrice: course.price,
+        Course.keyOfferPrice: course.offerPrice,
+        Course.keyTotalClass: course.totalClass,
+      },
+      mergeData: true,
+    );
+  }
+
+  @override
   Future<List<Course>> fetchMyCourses() async {
     List<Course> courses = [];
     if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
