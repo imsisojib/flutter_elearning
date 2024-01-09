@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/core/data/enums/e_bottomnav.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/appbar/sliver_custom_appbar.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/bottom_navigationbar/bottom_navigationbar.dart';
+import 'package:flutter_boilerplate_code/src/features/account/data/enums/enum_user_type.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
@@ -37,7 +38,7 @@ class _ScreenCoursesState extends State<ScreenCourses> {
                   title: "Courses",
                   pinned: true,
                   actions: [
-                    IconButton(
+                    Provider.of<ProviderAccount>(context,listen: false).currentUser?.role==EUserRole.Teacher.name?IconButton(
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
@@ -47,7 +48,7 @@ class _ScreenCoursesState extends State<ScreenCourses> {
                       icon: Icon(
                         Icons.add,
                       ),
-                    ),
+                    ):const SizedBox(),
                     SizedBox(
                       width: 24.w,
                     ),
