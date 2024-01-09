@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_boilerplate_code/constants.dart';
 import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
 import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_firebase_interceptor.dart';
@@ -27,7 +28,7 @@ class RepositoryCourses implements IRepositoryCourses {
         folderName: Constants.storageCourseThumbs,
         fileName: courseId,
       );
-      if(photoUploadResponse.statusCode==200){
+      if (photoUploadResponse.statusCode == 200) {
         thumbnailLink = photoUploadResponse.result;
       }
     }
@@ -52,16 +53,32 @@ class RepositoryCourses implements IRepositoryCourses {
   }
 
   @override
-  Future<ApiResponse> fetchMyCourses() {
-    // TODO: implement fetchMyCourses
-    throw UnimplementedError();
+  Future<List<Course>> fetchMyCourses() async {
+    List<Course> courses = [];
+    if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
+      return courses;
+    }
+
+    QuerySnapshot querySnapshot = await firebaseInterceptor
+        .getFirestore()
+        .collection(Constants.tableCourses)
+        .where(Course.keyTeacherId, isEqualTo: firebaseInterceptor.getAuth().currentUser!.uid)
+        .get();
+
+    for (var element in querySnapshot.docs) {
+      courses.add(Course.fromJson(element.data() as Map<String, Object?>));
+    }
+
+    return courses;
   }
 
   @override
   Future<List<CourseCategory>> fetchCourseCategories() async {
     List<CourseCategory> categories = [];
-    var apiResponse = await firebaseInterceptor.readCollection(collectionName: Constants.tableCourseCategories,);
-    if(apiResponse.statusCode==200){
+    var apiResponse = await firebaseInterceptor.readCollection(
+      collectionName: Constants.tableCourseCategories,
+    );
+    if (apiResponse.statusCode == 200) {
       apiResponse.result.forEach((v) {
         categories.add(CourseCategory.fromJson(v.data()));
       });

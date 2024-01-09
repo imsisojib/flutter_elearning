@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
 
 abstract class IFirebaseDBInterceptor {
-
   FirebaseAuth getAuth();
+
+  FirebaseFirestore getFirestore();
 
   String getDocumentId({
     required String collectionName,
@@ -17,7 +19,6 @@ abstract class IFirebaseDBInterceptor {
   Future<ApiResponse> readCollection({
     required String collectionName,
   });
-
 
   Future<ApiResponse> insertCollection({
     required String collectionName,
@@ -48,5 +49,4 @@ abstract class IFirebaseDBInterceptor {
     required String folderName,
     required String fileName,
   });
-
 }

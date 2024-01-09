@@ -114,7 +114,12 @@ class ProviderCourses extends ChangeNotifier {
     submitLoading = false;
   }
 
-  void fetchMyCourses({bool forceFetch = false}) {}
+  Future<void> fetchMyCourses({bool forceFetch = false}) async {
+    if(_myCourses.isNotEmpty && !forceFetch) return; //no need to fetch if data is already available
+    loading = true;
+    _myCourses = await repositoryCourses.fetchMyCourses();
+    loading = false;
+  }
 
   Future<List<CourseCategory>> getCourseCategories() async{
     return await repositoryCourses.fetchCourseCategories();

@@ -24,6 +24,11 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   }
 
   @override
+  FirebaseFirestore getFirestore(){
+    return db;
+  }
+
+  @override
   String getDocumentId({required String collectionName}) {
     return db.collection(collectionName).doc().id;
   }
@@ -66,6 +71,8 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
       );
     }
   }
+
+
 
   @override
   Future<ApiResponse> insertCollection({
