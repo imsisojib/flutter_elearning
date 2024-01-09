@@ -8,4 +8,6 @@ abstract class IRepositoryCourses{
   Future<ApiResponse> createCourse(RequestBodyCourse course);
 
   Future<List<CourseCategory>> fetchCourseCategories();
+
+  Future<ApiResponse> deleteCourse(String id);
 }

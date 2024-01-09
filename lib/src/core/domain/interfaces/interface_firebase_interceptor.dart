@@ -32,10 +32,9 @@ abstract class IFirebaseDBInterceptor {
     bool mergeData = false,
   });
 
-  Future<ApiResponse> delete({
-    required String endPoint,
-    Map<String, String>? headers,
-    dynamic body,
+  Future<ApiResponse> deleteDocument({
+    required String collectionName,
+    required String documentId,
   });
 
   Future<ApiResponse> put({

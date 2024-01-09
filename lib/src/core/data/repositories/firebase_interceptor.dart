@@ -34,9 +34,9 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   }
 
   @override
-  Future<ApiResponse> delete({required String endPoint, Map<String, String>? headers, body}) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<ApiResponse> deleteDocument({required String collectionName, required String documentId,}) async {
+    await db.collection(collectionName).doc(documentId).delete();
+    return ApiResponse(statusCode: 200, result: "Deleted successfully.");
   }
 
   @override

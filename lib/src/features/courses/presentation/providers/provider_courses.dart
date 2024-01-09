@@ -124,4 +124,14 @@ class ProviderCourses extends ChangeNotifier {
   Future<List<CourseCategory>> getCourseCategories() async{
     return await repositoryCourses.fetchCourseCategories();
   }
+
+  Future<void> deleteCourse(String? id) async {
+    if(id==null || id.isEmpty) return;
+
+    //always return 200
+    await repositoryCourses.deleteCourse(id);
+    fetchMyCourses(forceFetch: true,);
+
+
+  }
 }

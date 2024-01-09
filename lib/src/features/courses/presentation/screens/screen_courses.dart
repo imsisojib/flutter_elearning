@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/core/data/enums/e_bottomnav.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/appbar/sliver_custom_appbar.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/bottom_navigationbar/bottom_navigationbar.dart';
+import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -93,6 +94,29 @@ class _ScreenCoursesState extends State<ScreenCourses> {
                                           Text(
                                             "${providerCourses.myCourses[index].price}",
                                           ),
+                                          Provider.of<ProviderAccount>(context, listen: false).currentUser?.uid ==
+                                                  providerCourses.myCourses[index].teacherId
+                                              ? Row(
+                                                  children: [
+                                                    IconButton(
+                                                      onPressed: () {
+
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.edit,
+                                                      ),
+                                                    ),
+                                                    IconButton(
+                                                      onPressed: () {
+                                                        providerCourses.deleteCourse(providerCourses.myCourses[index].id);
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.delete,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : const SizedBox(),
                                         ],
                                       ),
                                     ),

@@ -86,4 +86,9 @@ class RepositoryCourses implements IRepositoryCourses {
 
     return categories;
   }
+
+  @override
+  Future<ApiResponse> deleteCourse(String id) {
+    return firebaseInterceptor.deleteDocument(collectionName: Constants.tableCourses, documentId: id,);
+  }
 }
