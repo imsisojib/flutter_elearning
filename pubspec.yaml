@@ -58,15 +58,19 @@ dependencies:
 
   cached_network_image: ^3.2.3
 
-  pinput: ^3.0.1
+  pin_code_fields: ^7.4.0
   country_picker: ^2.0.16
   image_picker: ^0.8.6+1
   image_cropper: ^5.0.0
 
   fluttertoast: ^8.0.9
 
+  dotted_border: ^2.1.0
+
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -91,6 +95,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/more_screen/
+    - assets/language/    #json file of all available languages
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,0 +1,25 @@
+{
+  "enterYourPhoneNumberToRegister" : "أدخل رقم هاتفك للتسجيل",
+  "afterEnteringThePhoneNumber6digits" : "بعد إدخال رقم الهاتف سيتم إرسال 6",
+  "otpCodeWillBeSend" : "أرقام للتحقق.",
+  "phoneNumber" : "رقم موبايل",
+  "continue" : "استمرار",
+  "enterTheVerificationCode" : "أدخل كود التحقق",
+  "otp6NumbersWillBeSentForVerification" : "أدخل كود التحقق",
+  "resendOTPCode" : "إعادة إرسال الكود",
+  "successful" : "ناجح",
+  "verified" : "تم التحقق",
+  "congratulationsPhoneNumberVerified" : "تهانينا، تم التحقق من رقم الهاتف",
+  "lastStepFor" : "خطوة أخيرة",
+  "registration" : "للتسجيل",
+  "firstName" : "الاسم الأول",
+  "lastName" : "اسم العائلة",
+  "required_in_braked" : "(مطلوب)",
+  "optional_in_braked" : "(اختياري)",
+  "email" : "البريد الالكتروني",
+  "registerAs" : "سجل ك",
+  "registrationIsSuccessful" : "تم التسجيل\nبنجاح",
+  "select" : "يختار",
+  "withoutCountryCode" : "بدون رمز البلد: "
+
+}

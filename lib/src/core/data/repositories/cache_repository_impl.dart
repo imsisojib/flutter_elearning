@@ -32,4 +32,14 @@ class CacheRepositoryImpl implements ICacheRepository{
     await sharedPreference.setString('key_app_session_token', '');
   }
 
+  @override
+  String getLocale() {
+    return sharedPreference.getString('key_app_language')??"en";
+  }
+
+  @override
+  Future<void> saveLocale(String languageCode) async {
+    await sharedPreference.setString('key_app_language', languageCode);
+  }
+
 }
