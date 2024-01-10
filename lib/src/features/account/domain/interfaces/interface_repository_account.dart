@@ -16,7 +16,9 @@ abstract class IRepositoryAccount {
   });
 
   Future<ApiResponse> setupUserInitialProfile({
-    required String name,
+    required String firstName,
+    required String lastName,
+    String? email,
     required String role,
   });
 

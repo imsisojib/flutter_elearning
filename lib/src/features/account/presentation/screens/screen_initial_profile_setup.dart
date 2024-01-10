@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate_code/constants.dart';
@@ -8,6 +6,8 @@ import 'package:flutter_boilerplate_code/src/core/presentation/widgets/dropdown/
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield.dart';
 import 'package:flutter_boilerplate_code/src/features/account/data/enums/enum_user_type.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
+import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -20,121 +20,148 @@ class ScreenInitialProfileSetup extends StatefulWidget {
 }
 
 class _ScreenInitialProfileSetupState extends State<ScreenInitialProfileSetup> {
-  TextEditingController? nameTextEditingController;
+  TextEditingController? firstNameTextEditingController;
+  TextEditingController? lastNameEditingController;
+  TextEditingController? emailTextEditingController;
   String? role;
 
   @override
   void initState() {
-    nameTextEditingController = TextEditingController();
+    firstNameTextEditingController = TextEditingController();
+    lastNameEditingController = TextEditingController();
+    emailTextEditingController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    nameTextEditingController?.dispose();
+    firstNameTextEditingController?.dispose();
+    lastNameEditingController?.dispose();
+    emailTextEditingController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(24.h),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Consumer<ProviderAccount>(
-          builder: (_, accountProvider, child) {
-            return SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+    return Consumer<ProviderAccount>(builder: (_, accountProvider, child){
+      return Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(24.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 100.h,
+                ),
+                Text(
+                  LanguageKey.lastStepFor.tr,
+                  style: theme.textTheme.displayLarge,
+                ),
+                Text(
+                  LanguageKey.registration.tr,
+                  style: theme.textTheme.displayLarge,
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text(
-                          Constants.appName,
-                          style: theme.textTheme.headline5?.copyWith(color: const Color(0xffEC6375)), //TODO:
-                        ),
-                      ],
-                    ),
                     SizedBox(
                       height: 12.h,
                     ),
-                    Text(
-                      'Setup Your Initial Profile',
-                      style: theme.textTheme.bodyText1?.copyWith(fontWeight: FontWeight.w600),
+                    AdvanceTextFormField(
+                      hintText: '${LanguageKey.firstName.tr} ${LanguageKey.requiredInBraked.tr}',
+                      isMandatoryField: true,
+                      controller: firstNameTextEditingController,
                     ),
                     SizedBox(
-                      height: 60.h,
+                      height: 8.h,
                     ),
-                    /*Image.asset(
-                      AppImages.placeholderProfile,
-                      height: 100.h,
-                      width: 100.h,
-                    ),*/
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 12.h,
-                        ),
-                        AdvanceTextFormField(
-                          titleText: "Full Name",
-                          hintText: 'Enter Your Full Name',
-                          isMandatoryField: true,
-                          controller: nameTextEditingController,
-                        ),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        AdvanceDropDown<EUserRole>(
-                          titleText: "Join As",
-                          hintText: "Select",
-                          items: EUserRole.values
-                              .map(
-                                (e) => DropdownMenuItem(
-                                  value: e,
-                                  child: Text(e.name),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (EUserRole? value){
-                            role = value?.name;
-                          },
-                        ),
-                      ],
+                    AdvanceTextFormField(
+                      hintText: '${LanguageKey.lastName.tr} ${LanguageKey.requiredInBraked.tr}',
+                      isMandatoryField: true,
+                      controller: lastNameEditingController,
                     ),
                     SizedBox(
-                      height: 18.h,
+                      height: 8.h,
                     ),
-                    accountProvider.loading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : BasicButton(
-                            buttonText: 'Done',
-                            onPressed: () {
-                              accountProvider.setupInitialProfile(
-                                name: nameTextEditingController?.text,
-                                role: role,
-                              );
-                            },
-                          ),
+                    AdvanceTextFormField(
+                      hintText: '${LanguageKey.email.tr} ${LanguageKey.optionalInBraked.tr}',
+                      isMandatoryField: true,
+                      controller: emailTextEditingController,
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    AdvanceDropDown<EUserRole>(
+                      titleText: LanguageKey.registerAs.tr,
+                      isMandatoryField: true,
+                      hintText: "Select",
+                      items: EUserRole.values
+                          .map(
+                            (e) => DropdownMenuItem(
+                          value: e,
+                          child: Text(e.name),
+                        ),
+                      )
+                          .toList(),
+                      onChanged: (EUserRole? value){
+                        role = value?.name;
+                      },
+                    ),
                   ],
                 ),
-              ),
-            );
-          },
+                SizedBox(
+                  height: 18.h,
+                ),
+
+              ],
+            ),
+          ),
         ),
-      ),
-    );
+        bottomNavigationBar: Container(
+          height: 100.h,
+          padding: EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 16.h,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Consumer<ProviderAccount>(builder: (_, providerAccount, child) {
+                return SizedBox(
+                  width: double.infinity,
+                  height: 45,
+                  child: accountProvider.loading
+                      ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                      : BasicButton(
+                    buttonText: LanguageKey.continueText.tr,
+                    buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textColorDark,
+                    ),
+                    backgroundColor: AppColors.primaryColorLight,
+                    onPressed: () {
+                      accountProvider.setupInitialProfile(
+                        firstName: firstNameTextEditingController?.text,
+                        lastName: lastNameEditingController?.text,
+                        email: emailTextEditingController?.text,
+                        role: role,
+                      );
+                    },
+                  ),
+                );
+              }),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

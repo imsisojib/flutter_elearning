@@ -136,14 +136,29 @@ class _ScreenMyProfileState extends State<ScreenMyProfile> {
                         height: 16.h,
                       ),
                       AdvanceTextFormField(
-                        titleText: "Full Name",
-                        hintText: "Full Name",
+                        titleText: "First Name",
+                        hintText: "First Name",
                         isMandatoryField: true,
                         enabled: editProfile,
-                        initialValue: providerAccount.currentUser?.fullName,
+                        initialValue: providerAccount.currentUser?.firstName,
                         onChanged: (String value) {
                           var data = providerAccount.currentUser;
-                          data?.fullName = value;
+                          data?.firstName = value;
+                          providerAccount.currentUser = data;
+                        },
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      AdvanceTextFormField(
+                        titleText: "Last Name",
+                        hintText: "Last Name",
+                        isMandatoryField: true,
+                        enabled: editProfile,
+                        initialValue: providerAccount.currentUser?.lastName,
+                        onChanged: (String value) {
+                          var data = providerAccount.currentUser;
+                          data?.lastName = value;
                           providerAccount.currentUser = data;
                         },
                       ),
@@ -156,6 +171,20 @@ class _ScreenMyProfileState extends State<ScreenMyProfile> {
                         enabled: false,
                         initialValue: providerAccount.currentUser?.phoneNumber,
                         onChanged: (String value) {},
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      AdvanceTextFormField(
+                        titleText: "Email",
+                        hintText: "Email",
+                        enabled: editProfile,
+                        initialValue: providerAccount.currentUser?.email,
+                        onChanged: (String value) {
+                          var data = providerAccount.currentUser;
+                          data?.email = value;
+                          providerAccount.currentUser = data;
+                        },
                       ),
                       SizedBox(
                         height: 8.h,

@@ -20,4 +20,5 @@ class LanguageKey{
   static const String registerAs = "registerAs";
   static const String registrationIsSuccessful = "registrationIsSuccessful";
   static const String select = "select";
+  static const String withoutCountryCode = "withoutCountryCode";
 }

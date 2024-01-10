@@ -74,8 +74,8 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                 cursorColor: theme.colorScheme.onBackground,
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(25),
-                  fieldHeight: 48.h,
+                  borderRadius: BorderRadius.circular(16),
+                  fieldHeight: 55.h,
                   fieldWidth: 48.h,
                   borderWidth: 1,
                   //errorBorderColor: AppColors.grey75.withOpacity(.2),
@@ -109,9 +109,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
               Row(
                 children: [
                   TextButton(
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     child: Text(
                       LanguageKey.resendOTPCode.tr,
                       style: theme.textTheme.bodySmall,
@@ -142,6 +140,10 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                         )
                       : BasicButton(
                           buttonText: LanguageKey.continueText.tr,
+                          buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textColorDark,
+                          ),
                           backgroundColor: AppColors.primaryColorLight,
                           onPressed: () {
                             if (otpCode.isEmpty) {

@@ -46,7 +46,7 @@ class ScreenMore extends StatelessWidget{
                         height: 12.h,
                       ),
                       Text(
-                        accountProvider.currentUser?.fullName ?? "",
+                        accountProvider.currentUser?.lastName ?? "",
                         style: GoogleFonts.rubik().copyWith(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w600,

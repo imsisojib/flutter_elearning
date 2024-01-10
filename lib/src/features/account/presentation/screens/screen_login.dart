@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
 import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
+import 'package:flutter_boilerplate_code/src/helpers/widget_helper.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,11 +17,12 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenLogin> {
-  String _initialCountryCode = "+20";
+  Country? _initialCountry;
   TextEditingController? phoneTextEditingController;
 
   @override
   void initState() {
+    _initialCountry = CountryParser.parseCountryCode("EG");
     phoneTextEditingController = TextEditingController();
     super.initState();
   }
@@ -84,20 +86,23 @@ class _ScreenLoginState extends State<ScreenLogin> {
                     child: InkWell(
                       onTap: () {
                         showCountryPicker(
-                          showPhoneCode: true,
-                          context: context,
-                          onSelect: (Country country) {
-                            setState(() {
-                              _initialCountryCode = "+${country.phoneCode}";
-                            });
-                          },
-                        );
+                            showPhoneCode: true,
+                            context: context,
+                            onSelect: (Country country) {
+                              setState(() {
+                                _initialCountry = country;
+                              });
+                            },
+                            countryListTheme: CountryListThemeData(
+                              backgroundColor: AppColors.scaffoldColorLight,
+                            ));
                       },
                       child: Center(
                         child: Text(
-                          _initialCountryCode,
+                          WidgetHelper.countryCodeToEmoji(_initialCountry?.countryCode),
                           style: theme.textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.w600,
+                            fontSize: 18.sp,
                           ),
                         ),
                       ),
@@ -127,6 +132,25 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 4.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  LanguageKey.withoutCountryCode.tr,
+                  style: theme.textTheme.bodySmall,
+                ),
+                Text(
+                  "+${_initialCountry?.phoneCode}",
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textDirection: TextDirection.ltr,
+                )
+              ],
             ),
             SizedBox(
               height: 20,
@@ -165,7 +189,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                             return;
                           }
                           providerAccount.sentOtpCode(
-                            phoneNumber: "$_initialCountryCode${phoneTextEditingController?.text}",
+                            phoneNumber:
+                                "+${_initialCountry?.phoneCode}${phoneTextEditingController?.text}",
                           );
                         },
                         child: Text(

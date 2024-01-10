@@ -19,5 +19,6 @@
   "email" : "Email",
   "registerAs" : "Register As",
   "registrationIsSuccessful" : "Registration is\nSuccessful",
-  "select" : "Select"
+  "select" : "Select",
+  "withoutCountryCode" : "without country code: "
 }

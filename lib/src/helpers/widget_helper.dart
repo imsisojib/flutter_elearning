@@ -375,6 +375,7 @@ class WidgetHelper {
       ),
     );
   }
+
 }
 
 class _BlurryDialog extends StatelessWidget {

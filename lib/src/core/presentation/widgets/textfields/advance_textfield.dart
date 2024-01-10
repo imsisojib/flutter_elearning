@@ -45,6 +45,11 @@ class AdvanceTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    //for dark and light theme
+    Color fillColor = theme.brightness==Brightness.light? AppColors.white : AppColors.topSheet;
+    Color borderColor = theme.brightness==Brightness.light? AppColors.grey400 : AppColors.popupStroke;
+
     return Column(
       children: [
         titleText == null
@@ -57,7 +62,7 @@ class AdvanceTextFormField extends StatelessWidget {
                       Text(
                         titleText ?? "",
                         style: theme.textTheme.labelMedium?.copyWith(
-                          color: AppColors.grey400,
+                          color: AppColors.grey600,
                         ),
                       ),
                       isMandatoryField
@@ -101,45 +106,43 @@ class AdvanceTextFormField extends StatelessWidget {
             maxLines: maxLines,
             validator: validator as String? Function(String?)?,
             decoration: InputDecoration(
-              fillColor: backgroundColor ?? AppColors.topSheet,
+              fillColor: backgroundColor ?? fillColor,
               filled: true,
               contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
               prefixIcon: prefixIcon,
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.red,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               hintText: hintText,
-              hintStyle: TextStyle(
+              hintStyle: theme.textTheme.bodySmall?.copyWith(
                 color: AppColors.grey500,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
               ),
               enabled: enabled,
             ),

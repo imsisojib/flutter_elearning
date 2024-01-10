@@ -1,7 +1,9 @@
 class UserModel{
   //table field names for Firebase
   static const String keyUid = "uid";
-  static const String keyFullName = "full_name";
+  static const String keyFirstName = "first_name";
+  static const String keyLastName = "last_name";
+  static const String keyEmail = "email";
   static const String keyRole = "role";
   static const String keyPhoneNumber = "phone_number";
   static const String keyProfilePicture = "profile_picture";
@@ -9,7 +11,9 @@ class UserModel{
   static const String keyCountry = "country";
 
   String? uid;
-  String? fullName;
+  String? firstName;
+  String? lastName;
+  String? email;
   String? role;
   String? phoneNumber;
   String? profilePicture;
@@ -17,7 +21,9 @@ class UserModel{
   String? country;
 
   UserModel.fromJson(Map<String, Object?> json){
-    fullName = json[keyFullName] as String?;
+    firstName = json[keyFirstName] as String?;
+    lastName = json[keyLastName] as String?;
+    email = json[keyEmail] as String?;
     uid = json[keyUid] as String?;
     phoneNumber = json[keyPhoneNumber] as String?;
     role = json[keyRole] as String?;
@@ -28,6 +34,6 @@ class UserModel{
 
   @override
   String toString() {
-    return 'UserModel{uid: $uid, fullName: $fullName, role: $role, phoneNumber: $phoneNumber, profilePicture: $profilePicture}';
+    return 'UserModel{uid: $uid, firstName: $firstName, lastName: $lastName, email: $email, role: $role, phoneNumber: $phoneNumber, profilePicture: $profilePicture, birthdate: $birthdate, country: $country}';
   }
 }

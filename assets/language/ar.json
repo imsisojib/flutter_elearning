@@ -19,6 +19,7 @@
   "email" : "البريد الالكتروني",
   "registerAs" : "سجل ك",
   "registrationIsSuccessful" : "تم التسجيل\nبنجاح",
-  "select" : "يختار"
+  "select" : "يختار",
+  "withoutCountryCode" : "بدون رمز البلد: "
 
 }
