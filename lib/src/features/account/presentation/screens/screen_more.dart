@@ -3,6 +3,7 @@ import 'package:flutter_boilerplate_code/src/core/data/enums/e_bottomnav.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/bottom_navigationbar/bottom_navigationbar.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/image/circular_image.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/language/presentation/providers/provider_language.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
@@ -17,7 +18,7 @@ class ScreenMore extends StatelessWidget{
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Consumer<ProviderAccount>(builder: (_, accountProvider, child) {
+    return Consumer2<ProviderAccount, ProviderLanguage>(builder: (_, accountProvider, providerLanguage, child) {
       return Scaffold(
         body: SafeArea(
           child: CustomScrollView(
@@ -45,7 +46,7 @@ class ScreenMore extends StatelessWidget{
                         height: 12.h,
                       ),
                       Text(
-                        accountProvider.currentUser?.fullName ?? "",
+                        accountProvider.currentUser?.lastName ?? "",
                         style: GoogleFonts.rubik().copyWith(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w600,
@@ -144,11 +145,14 @@ class ScreenMore extends StatelessWidget{
                         ),
                         splashColor: AppColors.popupBackground,
                         title: Text(
-                          "Invitations",
+                          "Languages:  ${providerLanguage.currentLocaleName}",
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: AppColors.grey400,
                           ),
                         ),
+                        onTap: (){
+                          Navigator.pushNamed(context, Routes.languageSelectScreen);
+                        },
                         leading: Image.asset(
                           AppImages.iconInvitations,
                         ),
