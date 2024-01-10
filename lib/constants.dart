@@ -3,7 +3,10 @@ class Constants{
 
   ///collections or table name
   static const tableUsers = "users";
+  static const tableCourses = "courses";
+  static const tableCourseCategories = "course_categories";
 
   //storage folders
   static const storageProfilePictures = "profile_pictures";
+  static const storageCourseThumbs = "course_thumbs";
 }

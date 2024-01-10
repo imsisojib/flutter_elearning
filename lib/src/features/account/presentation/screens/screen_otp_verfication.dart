@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_button.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
+import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
+import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
 class ScreenOtpVerification extends StatefulWidget {
@@ -12,145 +17,150 @@ class ScreenOtpVerification extends StatefulWidget {
 }
 
 class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
-  TextEditingController? pinTextEditingController;
+  String otpCode = '';
 
   @override
   void initState() {
-    pinTextEditingController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    pinTextEditingController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
-      textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.w600),
-      decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
-      ),
-    );
-
-    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(8),
-    );
-
-    final submittedPinTheme = defaultPinTheme.copyWith(
-      decoration: defaultPinTheme.decoration?.copyWith(
-        color: Color.fromRGBO(234, 239, 243, 1),
-      ),
-    );
+    final theme = Theme.of(context);
 
     return Consumer<ProviderAccount>(builder: (_, providerAccount, child) {
       return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_rounded,
-              color: Colors.black,
-            ),
-          ),
-          elevation: 0,
-        ),
         body: Container(
-          margin: EdgeInsets.only(left: 25, right: 25),
+          margin: EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 24.h,
+          ),
           alignment: Alignment.center,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/img1.png',
-                  width: 150,
-                  height: 150,
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                Text(
-                  "Phone Verification",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "We need to register your phone without getting started!",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Pinput(
-                  controller: pinTextEditingController,
-                  length: 6,
-                  // defaultPinTheme: defaultPinTheme,
-                  // focusedPinTheme: focusedPinTheme,
-                  // submittedPinTheme: submittedPinTheme,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 100.h,
+              ),
+              Text(
+                LanguageKey.enterTheVerificationCode.tr,
+                style: theme.textTheme.displayLarge,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              Text(
+                LanguageKey.otp6NumbersWillBeSentForVerification.tr,
+                style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              PinCodeTextField(
+                appContext: context,
+                length: 6,
+                hintCharacter: 'x',
+                keyboardType: TextInputType.number,
+                obscureText: false,
+                animationType: AnimationType.fade,
+                textStyle: theme.textTheme.displayMedium,
+                cursorColor: theme.colorScheme.onBackground,
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(16),
+                  fieldHeight: 55.h,
+                  fieldWidth: 48.h,
+                  borderWidth: 1,
+                  //errorBorderColor: AppColors.grey75.withOpacity(.2),
+                  activeFillColor: AppColors.white,
+                  inactiveFillColor: AppColors.white,
+                  selectedFillColor: AppColors.white,
 
-                  showCursor: true,
-                  onCompleted: (pin) => print(pin),
+                  activeColor: AppColors.red,
+                  inactiveColor: AppColors.grey400,
+                  disabledColor: AppColors.grey400,
+                  selectedColor: AppColors.grey400,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
+                animationDuration: const Duration(milliseconds: 300),
+                //backgroundColor: Colors.blue.shade50,
+                enableActiveFill: true,
+                //errorAnimationController: errorController,
+                //controller: textEditingController,
+                onCompleted: (String v) {
+                  otpCode = v;
+                },
+                onChanged: (value) {
+                  otpCode = value;
+                },
+                beforeTextPaste: (text) {
+                  return true;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      LanguageKey.resendOTPCode.tr,
+                      style: theme.textTheme.bodySmall,
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+        bottomNavigationBar: Container(
+          height: 100.h,
+          padding: EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 16.h,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Consumer<ProviderAccount>(builder: (_, providerAccount, child) {
+                return SizedBox(
                   width: double.infinity,
                   height: 45,
                   child: providerAccount.loading
                       ? const Center(
                           child: CircularProgressIndicator(),
                         )
-                      : ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.green.shade600,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                      : BasicButton(
+                          buttonText: LanguageKey.continueText.tr,
+                          buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textColorDark,
+                          ),
+                          backgroundColor: AppColors.primaryColorLight,
                           onPressed: () {
-
-                            if(pinTextEditingController?.text.isEmpty??true){
-                              Fluttertoast.showToast(msg: "Please provider OTP code!",);
+                            if (otpCode.isEmpty) {
+                              Fluttertoast.showToast(
+                                msg: "Please provider OTP code!",
+                              );
                               return;
                             }
 
                             providerAccount.signInWithPhoneNumber(
-                              otpCode: pinTextEditingController?.text??"",
+                              otpCode: otpCode,
                             );
                           },
-                          child: Text(
-                            "Verify Phone Number",
-                          ),
                         ),
-                ),
-                Row(
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          "Edit Phone Number ?",
-                          style: TextStyle(color: Colors.black),
-                        ))
-                  ],
-                )
-              ],
-            ),
+                );
+              }),
+            ],
           ),
         ),
       );

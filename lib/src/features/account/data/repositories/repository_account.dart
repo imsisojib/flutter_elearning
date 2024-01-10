@@ -51,7 +51,7 @@ class RepositoryAccount implements IRepositoryAccount {
   }
 
   @override
-  Future<ApiResponse> setupUserInitialProfile({required String name, required String role}) async {
+  Future<ApiResponse> setupUserInitialProfile({required String firstName, required String lastName, String? email, required String role,}) async {
     if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
       return ApiResponse(
         statusCode: 401,
@@ -63,7 +63,9 @@ class RepositoryAccount implements IRepositoryAccount {
       documentId: firebaseInterceptor.getAuth().currentUser!.uid,
       json: {
         UserModel.keyUid: firebaseInterceptor.getAuth().currentUser?.uid,
-        UserModel.keyFullName: name,
+        UserModel.keyFirstName: firstName,
+        UserModel.keyLastName: lastName,
+        UserModel.keyEmail: email,
         UserModel.keyPhoneNumber: firebaseInterceptor.getAuth().currentUser?.phoneNumber,
         UserModel.keyRole: role,
         UserModel.keyProfilePicture: firebaseInterceptor.getAuth().currentUser?.photoURL,
