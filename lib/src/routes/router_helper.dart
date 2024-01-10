@@ -11,6 +11,7 @@ import 'package:flutter_boilerplate_code/src/features/courses/presentation/scree
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_select_course_category.dart';
 import 'package:flutter_boilerplate_code/src/features/errors/presentation/screens/screen_error.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/screens/screen_home.dart';
+import 'package:flutter_boilerplate_code/src/features/language/presentation/screens/screen_select_language.dart';
 import 'package:flutter_boilerplate_code/src/features/progress/presentation/screens/screen_progress.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 
@@ -75,6 +76,12 @@ class RouterHelper {
     return const ScreenSelectCourseCategory();
   });
 
+  ///LANGUAGE
+  static final Handler _selectLanguageScreenHandler =
+  Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
+    return const ScreenSelectLanguage();
+  });
+
 
   static final Handler _notFoundHandler =
   Handler(handlerFunc: (context, parameters) => const ScreenError());
@@ -99,6 +106,9 @@ class RouterHelper {
     router.define(Routes.courseAddScreen, handler: _courseAddScreenHandler, transitionType: TransitionType.cupertino);
     router.define(Routes.courseUpdateScreen, handler: _courseUpdateScreenHandler, transitionType: TransitionType.cupertino);
     router.define(Routes.courseCategorySelectScreen, handler: _courseCategorySelectScreenHandler, transitionType: TransitionType.cupertino);
+
+    ///LANGUAGE
+    router.define(Routes.languageSelectScreen, handler: _selectLanguageScreenHandler, transitionType: TransitionType.cupertino);
 
   }
 

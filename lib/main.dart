@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_ca
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/providers/provider_common.dart';
+import 'package:flutter_boilerplate_code/src/features/language/presentation/providers/provider_language.dart';
 import 'di_container.dart' as di;
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => di.sl<ProviderCommon>()),
         ChangeNotifierProvider(create: (context) => di.sl<ProviderAccount>()),
         ChangeNotifierProvider(create: (context) => di.sl<ProviderCourses>()),
+        ChangeNotifierProvider(create: (context) => di.sl<ProviderLanguage>()),
       ],
       child: const MyApp(),
     ),
