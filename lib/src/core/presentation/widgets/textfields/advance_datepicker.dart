@@ -65,6 +65,10 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
 
     controller?.text = widget.initialValue??"";
 
+    //for dark and light theme
+    Color fillColor = theme.brightness==Brightness.light? AppColors.white : AppColors.topSheet;
+    Color borderColor = theme.brightness==Brightness.light? AppColors.grey400 : AppColors.popupStroke;
+
     return Column(
       children: [
         widget.titleText == null
@@ -79,7 +83,7 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
                           Text(
                             widget.titleText ?? "",
                             style: theme.textTheme.labelMedium?.copyWith(
-                              color: AppColors.grey400,
+                              color: AppColors.grey600,
                             ),
                           ),
                           widget.isMandatoryField
@@ -131,7 +135,7 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
             maxLines: 1,
             validator: widget.validator as String? Function(String?)?,
             decoration: InputDecoration(
-              fillColor: widget.backgroundColor ?? AppColors.topSheet,
+              fillColor: widget.backgroundColor ?? fillColor,
               filled: true,
               contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
               prefixIcon: widget.prefixIcon,
@@ -156,40 +160,38 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
                 },
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
-                  color: AppColors.popupStroke,
+                  color: borderColor,
                 ),
               ),
               disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.red,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: AppColors.popupStroke,
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: borderColor,
                 ),
               ),
               hintText: widget.hintText,
-              hintStyle: TextStyle(
+              hintStyle: theme.textTheme.bodySmall?.copyWith(
                 color: AppColors.grey500,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
               ),
               enabled: widget.enabled,
             ),

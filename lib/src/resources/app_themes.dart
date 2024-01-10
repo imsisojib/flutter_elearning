@@ -91,44 +91,44 @@ ThemeData buildDarkTheme(BuildContext context) {
 
 TextTheme _buildLightTextTheme(TextTheme base) {
   return base.copyWith(
-    headlineMedium: GoogleFonts.workSans(  //headline4
-      fontWeight: FontWeight.w600,
-      fontSize: 34,
+    displayLarge: GoogleFonts.tajawal(  //headline4
+      fontWeight: FontWeight.bold,
+      fontSize: 34.sp,
       letterSpacing: 0.4,
       height: 0.9,
       color: AppColors.textColorLight,
     ),
-    headlineSmall: GoogleFonts.workSans(  //headline5
+    displayMedium: GoogleFonts.tajawal(  //headline5
       fontWeight: FontWeight.bold,
-      fontSize: 24,
+      fontSize: 24.sp,
       letterSpacing: 0.27,
       color: AppColors.textColorLight,
     ),
-    headlineLarge: GoogleFonts.workSans(  //headline6
+    displaySmall: GoogleFonts.tajawal(  //headline6
       fontWeight: FontWeight.w600,
-      fontSize: 20,
+      fontSize: 20.sp,
       letterSpacing: 0.18,
       color: AppColors.textColorLight,
     ),
-    titleSmall: GoogleFonts.workSans(   //subtitle2
+    titleSmall: GoogleFonts.tajawal(   //subtitle2
       fontWeight: FontWeight.w600,
       fontSize: 14,
       letterSpacing: -0.04,
       color: AppColors.textColorLight,
     ),
-    bodyLarge: GoogleFonts.workSans(  //bodyText1
+    bodyLarge: GoogleFonts.tajawal(  //bodyText1
       fontWeight: FontWeight.normal,
       fontSize: 16.sp,
       letterSpacing: 0.2,
       color: AppColors.textColorLight,
     ),
-    bodyMedium: GoogleFonts.workSans(  //bodyText2
+    bodyMedium: GoogleFonts.tajawal(  //bodyText2
       fontWeight: FontWeight.normal,
       fontSize: 14.sp,
       letterSpacing: -0.05,
       color: AppColors.textColorLight,
     ),
-    bodySmall: GoogleFonts.workSans(  //caption
+    bodySmall: GoogleFonts.tajawal(  //caption
       fontWeight: FontWeight.normal,
       fontSize: 12,
       letterSpacing: 0.2,
@@ -139,44 +139,44 @@ TextTheme _buildLightTextTheme(TextTheme base) {
 
 TextTheme _buildDarkTextTheme(TextTheme base) {
   return base.copyWith(
-    headlineMedium: GoogleFonts.rubik( //headline4
+    headlineMedium: GoogleFonts.tajawal( //headline4
       fontWeight: FontWeight.w600,
       fontSize: 34.sp,
       letterSpacing: 0.4,
       height: 0.9,
       color: AppColors.textColorDark,
     ),
-    headlineSmall: GoogleFonts.rubik( //headline5
+    headlineSmall: GoogleFonts.tajawal( //headline5
       fontWeight: FontWeight.bold,
       fontSize: 24.sp,
       letterSpacing: 0.27,
       color: AppColors.textColorDark,
     ),
-    headlineLarge: GoogleFonts.rubik( //headline6
+    headlineLarge: GoogleFonts.tajawal( //headline6
       fontWeight: FontWeight.w600,
       fontSize: 20.sp,
       letterSpacing: 0.18,
       color: AppColors.textColorDark,
     ),
-    titleSmall: GoogleFonts.rubik( //subtitle2
+    titleSmall: GoogleFonts.tajawal( //subtitle2
       fontWeight: FontWeight.w600,
       fontSize: 14.sp,
       letterSpacing: -0.04,
       color: AppColors.textColorDark,
     ),
-    bodyLarge: GoogleFonts.rubik( //bodyText1
+    bodyLarge: GoogleFonts.tajawal( //bodyText1
       fontWeight: FontWeight.normal,
       fontSize: 16.sp,
       letterSpacing: 0.2,
       color: AppColors.textColorDark,
     ),
-    bodyMedium: GoogleFonts.rubik(  //bodyText2
+    bodyMedium: GoogleFonts.tajawal(  //bodyText2
       fontWeight: FontWeight.normal,
       fontSize: 14.sp,
       letterSpacing: -0.05,
       color: AppColors.textColorDark,
     ),
-    bodySmall: GoogleFonts.rubik( //caption
+    bodySmall: GoogleFonts.tajawal( //caption
       fontWeight: FontWeight.normal,
       fontSize: 12.sp,
       letterSpacing: 0.2,
