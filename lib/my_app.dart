@@ -75,8 +75,8 @@ class _MyAppState extends State<MyApp> {
               );
             },
             title: 'eLearning',
-            themeMode: ThemeMode.dark,
-            theme: buildDarkTheme(context),
+            themeMode: ThemeMode.light,
+            theme: buildLightTheme(context),
             initialRoute: Provider.of<ProviderAccount>(context, listen: false).isUserLoggedIn()
                 ? Routes.homeScreen
                 : Routes.loginScreen,

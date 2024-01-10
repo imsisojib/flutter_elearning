@@ -20,10 +20,6 @@ class ProviderLanguage extends ChangeNotifier{
   Locale get currentLocale => _currentLocale;
   String get currentLocaleName => _currentLocaleName;
 
-  String? getTranslated(BuildContext context, String key) {
-    return AppLocalization.of(context)!.translate(key) ?? key;
-  }
-
   void updateLocaleByCode(String languageCode) async {
     await cacheRepository.saveLocale(languageCode);
     _currentLocale = _locale(languageCode);

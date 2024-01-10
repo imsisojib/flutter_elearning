@@ -170,31 +170,6 @@ class ScreenMore extends StatelessWidget{
                         ),
                         splashColor: AppColors.popupBackground,
                         title: Text(
-                          providerLanguage.getTranslated(context, "SHARE_APP")??"",
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: AppColors.grey400,
-                          ),
-                        ),
-                        onTap: (){
-                          Navigator.pushNamed(context, Routes.languageSelectScreen);
-                        },
-                        leading: Image.asset(
-                          AppImages.iconInvitations,
-                        ),
-                        trailing: Image.asset(
-                          AppImages.iconRightArrow,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      ListTile(
-                        tileColor: AppColors.topSheet,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        splashColor: AppColors.popupBackground,
-                        title: Text(
                           "Withdraw History",
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: AppColors.grey400,

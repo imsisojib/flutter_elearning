@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 class AppColors {
 
   //textColor
-  static const Color textColorLight = Color(0xFF000000);
-  static const Color textColorDark = Color(0xFFFAFAFA);
+  static const Color textColorLight = Color(0xFF030303);
+  static const Color textColorDark = Color(0xFFF3F9FE);
 
   //light mode
-  static const Color primaryColorLight = Color(0xFF344955);
+  static const Color primaryColorLight = Color(0xFF27D9B3);
   static const Color secondaryColorLight = Color(0xFFF9AA33);
   static const Color cardColorLight = Color(0xFFFFFFFF);
-  static const Color surfaceColorLight = Color(0xFFFFFFFF);
+  static const Color surfaceColorLight = Color(0xFFF3F9FE);
   static const Color onPrimaryColorLight = Color(0xFFFFFFFF);
   static const Color onErrorColorLight = Color(0xFF000000);
   static const Color onSurfaceColorLight = Color(0xFF000000);
   static const Color onBackgroundColorLight = Color(0xFF000000);
   static const Color onSecondaryColorLight = Color(0xFF000000);
   static const Color backgroundColorLight = Color(0xFFEEF0F2);
-  static const Color scaffoldColorLight = Color(0xFFEEF0F2);
+  static const Color scaffoldColorLight = Color(0xFFF3F9FE);
   static const Color errorColorLight = Color(0xFFFF4C5D);
 
   //dark mode
