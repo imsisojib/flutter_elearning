@@ -24,9 +24,19 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   }
 
   @override
-  Future<ApiResponse> delete({required String endPoint, Map<String, String>? headers, body}) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  FirebaseFirestore getFirestore(){
+    return db;
+  }
+
+  @override
+  String getDocumentId({required String collectionName}) {
+    return db.collection(collectionName).doc().id;
+  }
+
+  @override
+  Future<ApiResponse> deleteDocument({required String collectionName, required String documentId,}) async {
+    await db.collection(collectionName).doc(documentId).delete();
+    return ApiResponse(statusCode: 200, result: "Deleted successfully.");
   }
 
   @override
@@ -51,12 +61,38 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
   }
 
   @override
+  Future<ApiResponse> readCollection({required String collectionName}) async {
+    QuerySnapshot querySnapshot = await db.collection(collectionName).get();
+    if (querySnapshot.docs.isNotEmpty) {
+      return ApiResponse(statusCode: 200, result: querySnapshot.docs);
+    } else {
+      return ApiResponse(
+        statusCode: 404,
+      );
+    }
+  }
+
+
+
+  @override
   Future<ApiResponse> insertCollection({
     required String collectionName,
     required Map<String, dynamic> json,
-  }) {
-    // TODO: implement insertCollection
-    throw UnimplementedError();
+    ///will use auto id
+
+  }) async {
+    try {
+      await db.collection(collectionName).doc().set(json);
+      return ApiResponse(
+        statusCode: 200,
+        result: "Saved Successfully!",
+      );
+    } catch (e) {
+      return ApiResponse(
+        statusCode: 400,
+        result: "Failed to save!",
+      );
+    }
   }
 
   @override
@@ -66,6 +102,9 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
     required Map<String, dynamic> json,
     bool mergeData = false,
   }) async {
+    if(auth.currentUser?.uid==null){
+      return ApiResponse(statusCode: 401, result: "Unauthorized User!",);
+    }
     try {
       await db.collection(collectionName).doc(documentId).set(json, SetOptions(merge: mergeData,));
       return ApiResponse(
@@ -75,7 +114,7 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
     } catch (e) {
       return ApiResponse(
         statusCode: 400,
-        result: "Failed to update profile!",
+        result: "Failed to save!",
       );
     }
   }
@@ -99,5 +138,6 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
       return ApiResponse(statusCode: 400, result: "Unable to upload photo. Please try again later.");
     }
   }
+
 
 }

@@ -1,13 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_boilerplate_code/src/core/data/models/api_response.dart';
 
 abstract class IFirebaseDBInterceptor {
-
   FirebaseAuth getAuth();
+
+  FirebaseFirestore getFirestore();
+
+  String getDocumentId({
+    required String collectionName,
+  });
 
   Future<ApiResponse> readDocument({
     required String collectionName,
     required String documentId,
+  });
+
+  Future<ApiResponse> readCollection({
+    required String collectionName,
   });
 
   Future<ApiResponse> insertCollection({
@@ -22,10 +32,9 @@ abstract class IFirebaseDBInterceptor {
     bool mergeData = false,
   });
 
-  Future<ApiResponse> delete({
-    required String endPoint,
-    Map<String, String>? headers,
-    dynamic body,
+  Future<ApiResponse> deleteDocument({
+    required String collectionName,
+    required String documentId,
   });
 
   Future<ApiResponse> put({
@@ -39,5 +48,4 @@ abstract class IFirebaseDBInterceptor {
     required String folderName,
     required String fileName,
   });
-
 }
