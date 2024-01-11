@@ -7,7 +7,7 @@ class AppColors {
   static const Color textColorDark = Color(0xFFF3F9FE);
 
   //light mode
-  static const Color primaryColorLight = Color(0xFF27D9B3);
+  static const Color primaryColorLight = Color(0xFF25CEAA);
   static const Color secondaryColorLight = Color(0xFFF9AA33);
   static const Color cardColorLight = Color(0xFFFFFFFF);
   static const Color surfaceColorLight = Color(0xFFF3F9FE);

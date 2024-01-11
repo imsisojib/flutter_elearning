@@ -34,7 +34,7 @@ class CacheRepositoryImpl implements ICacheRepository{
 
   @override
   String getLocale() {
-    return sharedPreference.getString('key_app_language')??"en";
+    return sharedPreference.getString('key_app_language')??"ar";  //default arabic
   }
 
   @override

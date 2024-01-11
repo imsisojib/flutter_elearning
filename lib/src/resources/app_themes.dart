@@ -93,9 +93,8 @@ TextTheme _buildLightTextTheme(TextTheme base) {
   return base.copyWith(
     displayLarge: GoogleFonts.tajawal(  //headline4
       fontWeight: FontWeight.bold,
-      fontSize: 34.sp,
+      fontSize: 36.sp,
       letterSpacing: 0.4,
-      height: 0.9,
       color: AppColors.textColorLight,
     ),
     displayMedium: GoogleFonts.tajawal(  //headline5

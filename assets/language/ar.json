@@ -1,5 +1,6 @@
 {
-  "enterYourPhoneNumberToRegister" : "أدخل رقم هاتفك للتسجيل",
+  "enterYourPhoneNumber" : "أدخل رقم هاتف ",
+  "toRegister" : "للتسجيل",
   "afterEnteringThePhoneNumber6digits" : "بعد إدخال رقم الهاتف سيتم إرسال 6",
   "otpCodeWillBeSend" : "أرقام للتحقق.",
   "phoneNumber" : "رقم موبايل",
@@ -20,6 +21,8 @@
   "registerAs" : "سجل ك",
   "registrationIsSuccessful" : "تم التسجيل\nبنجاح",
   "select" : "يختار",
-  "withoutCountryCode" : "بدون رمز البلد: "
+  "withoutCountryCode" : "بدون رمز البلد: ",
+  "enterTheCode" : "إدخال الكود",
+  "loginWithParentCode" : "الدخول بكود من الآباءد"
 
 }

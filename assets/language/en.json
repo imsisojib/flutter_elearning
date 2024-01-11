@@ -1,5 +1,6 @@
 {
-  "enterYourPhoneNumberToRegister" : "Enter Your Phone Number To Register",
+  "enterYourPhoneNumber" : "Enter Your Phone Number",
+  "toRegister" : "Enter Your Phone Number to Register",
   "afterEnteringThePhoneNumber6digits" : "After entering the phone number, 6 digits",
   "otpCodeWillBeSend" : "OTP code will be send",
   "phoneNumber" : "Phone Number",
@@ -20,5 +21,7 @@
   "registerAs" : "Register As",
   "registrationIsSuccessful" : "Registration is\nSuccessful",
   "select" : "Select",
-  "withoutCountryCode" : "without country code: "
+  "withoutCountryCode" : "without country code: ",
+  "enterTheCode" : "Enter the code",
+  "loginWithParentCode" : "Login with parent code"
 }

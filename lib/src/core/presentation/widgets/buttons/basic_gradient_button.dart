@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BasicButton extends StatelessWidget {
+class BasicGradientButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double elevation;
@@ -16,10 +16,10 @@ class BasicButton extends StatelessWidget {
   final TextAlign? textAlign;
   final MainAxisAlignment? mainAxisAlignment;
 
-  const BasicButton({
+  const BasicGradientButton({
     super.key,
     this.width,
-    this.height = 45,
+    this.height = 60,
     this.backgroundColor = AppColors.red,
     this.onPressed,
     this.suffix,
@@ -27,7 +27,7 @@ class BasicButton extends StatelessWidget {
     required this.buttonText,
     this.buttonTextStyle,
     this.elevation = 1,
-    this.borderRadius = 16,
+    this.borderRadius = 25,
     this.textAlign,
     this.mainAxisAlignment = MainAxisAlignment.spaceAround,
   });
@@ -40,30 +40,44 @@ class BasicButton extends StatelessWidget {
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
-        height: height!.h,
-        color: backgroundColor,
         elevation: elevation,
+        height: height!.h,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius.h),
         ),
         onPressed: () {
           onPressed?.call();
         },
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: mainAxisAlignment!,
-          children: [
-            prefix ?? const SizedBox(),
-            Text(
-              buttonText,
-              style: buttonTextStyle ??
-                  theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-              textAlign: textAlign,
-            ),
-            suffix ?? const SizedBox(),
-          ],
+        child: Container(
+          height: height!.h,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderRadius.h),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.primaryColorLight,
+                AppColors.primaryColorLight.withOpacity(.4),
+              ]
+            )
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: mainAxisAlignment!,
+            children: [
+              prefix ?? const SizedBox(),
+              Text(
+                buttonText,
+                style: buttonTextStyle ??
+                    theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textColorDark,
+                    ),
+                textAlign: textAlign,
+              ),
+              suffix ?? const SizedBox(),
+            ],
+          ),
         ),
       ),
     );

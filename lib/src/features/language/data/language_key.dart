@@ -1,5 +1,6 @@
 class LanguageKey{
-  static const String enterYourPhoneNumberToRegister = "enterYourPhoneNumberToRegister";
+  static const String enterYourPhoneNumber = "enterYourPhoneNumber";
+  static const String toRegister = "toRegister";
   static const String afterEnteringThePhoneNumber6digits = "afterEnteringThePhoneNumber6digits";
   static const String otpCodeWillBeSend = "otpCodeWillBeSend";
   static const String phoneNumber = "phoneNumber";
@@ -21,4 +22,6 @@ class LanguageKey{
   static const String registrationIsSuccessful = "registrationIsSuccessful";
   static const String select = "select";
   static const String withoutCountryCode = "withoutCountryCode";
+  static const String enterTheCode = "enterTheCode";
+  static const String loginWithParentCode = "loginWithParentCode";
 }
