@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/container_bg.dart';
 
 class ScreenWaitAndReRoute extends StatefulWidget {
   final Widget child;
@@ -34,7 +35,9 @@ class _ScreenWaitAndReRouteState extends State<ScreenWaitAndReRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: widget.child,
+        child: ContainerBg(
+          child: widget.child,
+        ),
       ),
     );
   }

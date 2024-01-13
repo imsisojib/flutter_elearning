@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate_code/constants.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_button.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_gradient_button.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/container_bg.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/dropdown/advance_dropdown.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield.dart';
 import 'package:flutter_boilerplate_code/src/features/account/data/enums/enum_user_type.dart';
@@ -47,8 +49,7 @@ class _ScreenInitialProfileSetupState extends State<ScreenInitialProfileSetup> {
     return Consumer<ProviderAccount>(builder: (_, accountProvider, child){
       return Scaffold(
         body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(24.h),
+          child: ContainerBg(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -133,29 +134,25 @@ class _ScreenInitialProfileSetupState extends State<ScreenInitialProfileSetup> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Consumer<ProviderAccount>(builder: (_, providerAccount, child) {
-                return SizedBox(
-                  width: double.infinity,
-                  height: 45,
-                  child: accountProvider.loading
-                      ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                      : BasicButton(
-                    buttonText: LanguageKey.continueText.tr,
-                    buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.textColorDark,
-                    ),
-                    backgroundColor: AppColors.primaryColorLight,
-                    onPressed: () {
-                      accountProvider.setupInitialProfile(
-                        firstName: firstNameTextEditingController?.text,
-                        lastName: lastNameEditingController?.text,
-                        email: emailTextEditingController?.text,
-                        role: role,
-                      );
-                    },
+                return accountProvider.loading
+                    ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : BasicGradientButton(
+                  buttonText: LanguageKey.continueText.tr,
+                  buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.textColorDark,
                   ),
+                  backgroundColor: AppColors.primaryColorLight,
+                  onPressed: () {
+                    accountProvider.setupInitialProfile(
+                      firstName: firstNameTextEditingController?.text,
+                      lastName: lastNameEditingController?.text,
+                      email: emailTextEditingController?.text,
+                      role: role,
+                    );
+                  },
                 );
               }),
             ],

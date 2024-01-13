@@ -105,11 +105,20 @@ class ProviderAccount extends ChangeNotifier {
         }));
       } else {
         Fluttertoast.showToast(msg: "Sign in successful.");
-        Navigator.pushNamedAndRemoveUntil(
-          sl<NavigationService>().navigatorKey.currentContext!,
-          Routes.homeScreen,
-          (route) => false,
-        );
+        // Navigator.pushNamedAndRemoveUntil(
+        //   sl<NavigationService>().navigatorKey.currentContext!,
+        //   Routes.homeScreen,
+        //   (route) => false,
+        // );
+
+        Navigator.push(sl<NavigationService>().navigatorKey.currentContext!,
+            MaterialPageRoute(builder: (_) {
+              return const ScreenWaitAndReRoute(
+                route: Routes.homeScreen,
+                child: OtpVerifiedView(),
+              );
+            }));
+
       }
     } else {
       Fluttertoast.showToast(msg: "Unable verify OTP code!");

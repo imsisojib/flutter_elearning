@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_button.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_gradient_button.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/container_bg.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
 import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
@@ -35,12 +37,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
 
     return Consumer<ProviderAccount>(builder: (_, providerAccount, child) {
       return Scaffold(
-        body: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 24.h,
-          ),
-          alignment: Alignment.center,
+        body: ContainerBg(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +54,9 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
               ),
               Text(
                 LanguageKey.otp6NumbersWillBeSentForVerification.tr,
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppColors.grey600,
+                ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -112,7 +111,10 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                     onPressed: () {},
                     child: Text(
                       LanguageKey.resendOTPCode.tr,
-                      style: theme.textTheme.bodySmall,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.lightBlueAccent,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   )
                 ],
@@ -131,34 +133,30 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Consumer<ProviderAccount>(builder: (_, providerAccount, child) {
-                return SizedBox(
-                  width: double.infinity,
-                  height: 45,
-                  child: providerAccount.loading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : BasicButton(
-                          buttonText: LanguageKey.continueText.tr,
-                          buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.textColorDark,
-                          ),
-                          backgroundColor: AppColors.primaryColorLight,
-                          onPressed: () {
-                            if (otpCode.isEmpty) {
-                              Fluttertoast.showToast(
-                                msg: "Please provider OTP code!",
-                              );
-                              return;
-                            }
-
-                            providerAccount.signInWithPhoneNumber(
-                              otpCode: otpCode,
-                            );
-                          },
+                return providerAccount.loading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : BasicGradientButton(
+                        buttonText: LanguageKey.continueText.tr,
+                        buttonTextStyle: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.textColorDark,
                         ),
-                );
+                        backgroundColor: AppColors.primaryColorLight,
+                        onPressed: () {
+                          if (otpCode.isEmpty) {
+                            Fluttertoast.showToast(
+                              msg: "Please provider OTP code!",
+                            );
+                            return;
+                          }
+
+                          providerAccount.signInWithPhoneNumber(
+                            otpCode: otpCode,
+                          );
+                        },
+                      );
               }),
             ],
           ),

@@ -23,7 +23,9 @@ class RegistrationCompletedView extends StatelessWidget{
           SizedBox(height: 8.h,),
           Text(
             LanguageKey.congratulationsPhoneNumberVerified.tr,
-            style: theme.textTheme.bodyMedium,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: AppColors.grey600,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 24.h,),
