@@ -92,7 +92,7 @@ class AdvanceDropDown<T> extends StatelessWidget {
             decoration: InputDecoration(
               fillColor: backgroundColor?? fillColor,
               filled: true,
-              contentPadding: EdgeInsets.fromLTRB(10.w, 12.h, 10.w, 12.h),
+              contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
               prefixIcon: prefixIcon,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -125,8 +125,8 @@ class AdvanceDropDown<T> extends StatelessWidget {
                 ),
               ),
               hintText: hintText,
-              hintStyle: theme.textTheme.bodySmall?.copyWith(
-                color: AppColors.grey500,
+              hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                color: AppColors.grey400,
               ),
               enabled: enabled,
             ),

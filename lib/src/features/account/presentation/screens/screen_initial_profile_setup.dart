@@ -100,7 +100,7 @@ class _ScreenInitialProfileSetupState extends State<ScreenInitialProfileSetup> {
                     AdvanceDropDown<EUserRole>(
                       titleText: LanguageKey.registerAs.tr,
                       isMandatoryField: true,
-                      hintText: "Select",
+                      hintText: LanguageKey.select.tr,
                       items: EUserRole.values
                           .map(
                             (e) => DropdownMenuItem(

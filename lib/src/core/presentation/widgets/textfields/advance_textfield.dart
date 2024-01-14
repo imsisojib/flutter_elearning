@@ -98,7 +98,7 @@ class AdvanceTextFormField extends StatelessWidget {
               FocusScope.of(context).requestFocus(FocusNode());
             },
             cursorColor: AppColors.red,
-            style: theme.textTheme.bodySmall,
+            style: theme.textTheme.bodyMedium,
             obscureText: obscureText,
             keyboardType: keyboardType,
             textInputAction: textInputAction,
@@ -108,7 +108,7 @@ class AdvanceTextFormField extends StatelessWidget {
             decoration: InputDecoration(
               fillColor: backgroundColor ?? fillColor,
               filled: true,
-              contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
+              contentPadding: EdgeInsets.fromLTRB(10.w, 20.h, 10.w, 20.h),
               prefixIcon: prefixIcon,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -141,8 +141,8 @@ class AdvanceTextFormField extends StatelessWidget {
                 ),
               ),
               hintText: hintText,
-              hintStyle: theme.textTheme.bodySmall?.copyWith(
-                color: AppColors.grey500,
+              hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                color: AppColors.grey400,
               ),
               enabled: enabled,
             ),

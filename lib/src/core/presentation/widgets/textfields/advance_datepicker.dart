@@ -128,7 +128,7 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
               widget.onPicked?.call(value);
             },
             cursorColor: AppColors.red,
-            style: theme.textTheme.bodySmall,
+            style: theme.textTheme.bodyMedium,
             obscureText: widget.obscureText,
             keyboardType: widget.keyboardType,
             textInputAction: widget.textInputAction,
@@ -137,7 +137,7 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
             decoration: InputDecoration(
               fillColor: widget.backgroundColor ?? fillColor,
               filled: true,
-              contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
+              contentPadding: EdgeInsets.fromLTRB(10.w, 20.h, 10.w, 20.h),
               prefixIcon: widget.prefixIcon,
               suffixIcon: IconButton(
                 icon: Icon(
@@ -190,8 +190,8 @@ class _AdvanceDatePickerState extends State<AdvanceDatePicker> {
                 ),
               ),
               hintText: widget.hintText,
-              hintStyle: theme.textTheme.bodySmall?.copyWith(
-                color: AppColors.grey500,
+              hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                color: AppColors.grey400,
               ),
               enabled: widget.enabled,
             ),

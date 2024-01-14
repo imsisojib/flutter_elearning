@@ -50,11 +50,11 @@ class BasicTextField extends StatelessWidget{
       decoration: InputDecoration(
         fillColor: filledColor??backgroundColor,
         filled: filled,
-        contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
+        contentPadding: EdgeInsets.fromLTRB(10.w, 20.h, 10.w, 20.h),
         //isDense: true,
         border: InputBorder.none,
         hintText: hintText,
-        hintStyle: hintTextStyle??theme.textTheme.labelMedium?.copyWith(color: AppColors.textColorLight.withOpacity(.5),),
+        hintStyle: hintTextStyle??theme.textTheme.bodyMedium?.copyWith(color: AppColors.grey400,),
 
       ),
     );
