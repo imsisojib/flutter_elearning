@@ -6,7 +6,7 @@
   "phoneNumber" : "رقم موبايل",
   "continue" : "استمرار",
   "enterTheVerificationCode" : "أدخل كود التحقق",
-  "otp6NumbersWillBeSentForVerification" : "أدخل كود التحقق",
+  "otp6NumbersWillBeSentForVerification" : "سيتم إرسال الآن ٦ أرقام للتحقق.",
   "resendOTPCode" : "إعادة إرسال الكود",
   "successful" : "ناجح",
   "verified" : "تم التحقق",
