@@ -95,7 +95,8 @@ TextTheme _buildLightTextTheme(TextTheme base) {
       fontWeight: FontWeight.bold,
       fontSize: 36.sp,
       letterSpacing: 0.4,
-      color: AppColors.textColorLight,
+      color: AppColors.textColorHeadlineLight,
+      //color: AppColors.textColorLight,
     ),
     displayMedium: GoogleFonts.tajawal(  //headline5
       fontWeight: FontWeight.bold,

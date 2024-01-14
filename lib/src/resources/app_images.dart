@@ -12,4 +12,8 @@ class AppImages{
   static const String iconRightArrow = "assets/images/more_screen/icon_right_arrow.png";
   static const String iconWithdrawRequest = "assets/images/more_screen/icon_withdraw_request.png";
 
+  ///GRAPHICS
+  static const String graphicDone = "assets/images/graphic_done.jpeg";
+  static const String graphicSuccess = "assets/images/graphic_success.jpeg";
+
 }

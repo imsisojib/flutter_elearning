@@ -4,6 +4,7 @@ class AppColors {
 
   //textColor
   static const Color textColorLight = Color(0xFF030303);
+  static const Color textColorHeadlineLight = Color(0xFF2D264B);
   static const Color textColorDark = Color(0xFFF3F9FE);
 
   //light mode

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
 import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
+import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OtpVerifiedView extends StatelessWidget{
@@ -26,12 +27,12 @@ class OtpVerifiedView extends StatelessWidget{
               color: AppColors.grey600,
             ),
           ),
-          SizedBox(height: 24.h,),
-          Icon(
-            Icons.check_circle_outline,
-            size: 100.h,
-            color: AppColors.red,
-          )
+          SizedBox(height: 32.h,),
+          Image.asset(
+            AppImages.graphicDone,
+            height: 100.h,
+            width: 100.h,
+          ),
         ],
       ),
     );
