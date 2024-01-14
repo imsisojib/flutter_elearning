@@ -5,6 +5,7 @@ abstract class IRepositoryAccount {
 
   void sendOtpCodeToPhone({
     required String phoneNumber,
+    int? resendingToken,
     Function? onVerificationFailed,
     Function? onCodeSent,
     Function? onError,

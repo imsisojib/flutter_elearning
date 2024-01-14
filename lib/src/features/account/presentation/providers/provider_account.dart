@@ -24,6 +24,8 @@ class ProviderAccount extends ChangeNotifier {
   bool _loading = false;
   bool _submitLoading = false;
   String? _verficationId;
+  int? _resendOTPToken;
+  String _authPhoneNumber = ""; //the number is currently using for verification
   UserModel? _currentUser;
 
   //getters
@@ -55,6 +57,8 @@ class ProviderAccount extends ChangeNotifier {
   }
 
   void sentOtpCode({required String phoneNumber}) {
+    _authPhoneNumber = phoneNumber;
+
     loading = true;
     repositoryAccount.sendOtpCodeToPhone(
         phoneNumber: phoneNumber,
@@ -68,6 +72,8 @@ class ProviderAccount extends ChangeNotifier {
         },
         onCodeSent: (String verificationId, int? forceResendingToken) {
           _verficationId = verificationId;
+          _resendOTPToken = forceResendingToken;
+
           Fluttertoast.showToast(msg: "Verification code is sent to your phone number!");
           Navigator.pushNamed(
             sl<NavigationService>().navigatorKey.currentContext!,
@@ -76,7 +82,26 @@ class ProviderAccount extends ChangeNotifier {
           loading = false;
         },
         onError: () {});
-    //loading = false;
+  }
+
+  void resendOtpCode() {
+    repositoryAccount.sendOtpCodeToPhone(
+        phoneNumber: _authPhoneNumber,
+        resendingToken: _resendOTPToken,  //that's the diff between sending and resending token
+        onVerificationFailed: (FirebaseAuthException error) {
+          Fluttertoast.showToast(msg: "Unable to sent verification code. Please try again later.");
+          Debugger.debug(
+            title: "ProviderAccount.sentOtpCode(): verification failed",
+            data: error.message,
+          );
+        },
+        onCodeSent: (String verificationId, int? forceResendingToken) {
+          _verficationId = verificationId;
+          _resendOTPToken = forceResendingToken;
+
+          Fluttertoast.showToast(msg: "Verification code is re-sent to your phone number!");
+        },
+        onError: () {});
   }
 
   Future<void> signInWithPhoneNumber({required String otpCode}) async {

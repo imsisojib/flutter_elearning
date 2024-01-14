@@ -15,12 +15,14 @@ class RepositoryAccount implements IRepositoryAccount {
   @override
   void sendOtpCodeToPhone({
     required String phoneNumber,
+    int? resendingToken,
     Function? onVerificationFailed,
     Function? onCodeSent,
     Function? onError,
   }) {
     firebaseInterceptor.getAuth().verifyPhoneNumber(
           phoneNumber: phoneNumber,
+          forceResendingToken: resendingToken,  //only android will have value, ios always null
           timeout: const Duration(seconds: 60),
           verificationCompleted: (AuthCredential authCredential) {},
           codeAutoRetrievalTimeout: (String verificationId) {},
@@ -51,7 +53,12 @@ class RepositoryAccount implements IRepositoryAccount {
   }
 
   @override
-  Future<ApiResponse> setupUserInitialProfile({required String firstName, required String lastName, String? email, required String role,}) async {
+  Future<ApiResponse> setupUserInitialProfile({
+    required String firstName,
+    required String lastName,
+    String? email,
+    required String role,
+  }) async {
     if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
       return ApiResponse(
         statusCode: 401,
@@ -74,7 +81,7 @@ class RepositoryAccount implements IRepositoryAccount {
   }
 
   @override
-  Future<ApiResponse> updateMyProfileInfo({required Map<String, dynamic> json}) async{
+  Future<ApiResponse> updateMyProfileInfo({required Map<String, dynamic> json}) async {
     if (firebaseInterceptor.getAuth().currentUser?.uid == null) {
       return ApiResponse(
         statusCode: 401,
@@ -84,7 +91,7 @@ class RepositoryAccount implements IRepositoryAccount {
     return await firebaseInterceptor.insertDocument(
       collectionName: Constants.tableUsers,
       documentId: firebaseInterceptor.getAuth().currentUser!.uid,
-      mergeData: true,  //if false then previous data will be gone
+      mergeData: true, //if false then previous data will be gone
       json: json,
     );
   }
@@ -130,11 +137,10 @@ class RepositoryAccount implements IRepositoryAccount {
         collectionName: Constants.tableUsers,
         documentId: firebaseInterceptor.getAuth().currentUser!.uid,
         json: {
-          UserModel.keyProfilePicture: apiResponse.result,  //this result has download link
+          UserModel.keyProfilePicture: apiResponse.result, //this result has download link
         },
         mergeData: true, //otherwise previous data will be gone
       );
-
     } else {
       return apiResponse;
     }

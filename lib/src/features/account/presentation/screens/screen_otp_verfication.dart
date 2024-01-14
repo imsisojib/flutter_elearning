@@ -108,7 +108,9 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
               Row(
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      providerAccount.resendOtpCode();
+                    },
                     child: Text(
                       LanguageKey.resendOTPCode.tr,
                       style: theme.textTheme.bodyMedium?.copyWith(
