@@ -23,5 +23,6 @@
   "select" : "Select",
   "withoutCountryCode" : "without country code: ",
   "enterTheCode" : "Enter the code",
-  "loginWithParentCode" : "Login with parent code"
+  "loginWithParentCode" : "Login with parent code",
+  "resendIn" : "Resend in"
 }

@@ -23,6 +23,7 @@
   "select" : "يختار",
   "withoutCountryCode" : "بدون رمز البلد: ",
   "enterTheCode" : "إدخال الكود",
-  "loginWithParentCode" : "الدخول بكود من الآباءد"
+  "loginWithParentCode" : "الدخول بكود من الآباءد",
+  "resendIn" : "إعادة الإرسال في"
 
 }

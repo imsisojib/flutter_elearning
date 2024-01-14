@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/di_container.dart';
@@ -27,6 +29,8 @@ class ProviderAccount extends ChangeNotifier {
   int? _resendOTPToken;
   String _authPhoneNumber = ""; //the number is currently using for verification
   UserModel? _currentUser;
+  bool _showResendOtpOption = false;
+  int _timerValue = 60;
 
   //getters
   bool get loading => _loading;
@@ -34,6 +38,10 @@ class ProviderAccount extends ChangeNotifier {
   bool get submitLoading => _submitLoading;
 
   UserModel? get currentUser => _currentUser;
+
+  bool get showResendOtpOption => _showResendOtpOption;
+
+  int get timerValue => _timerValue;
 
   //setters
   set loading(bool flag) {
@@ -80,6 +88,7 @@ class ProviderAccount extends ChangeNotifier {
             Routes.otpVerificationScreen,
           );
           loading = false;
+          _resetOtpResendTimer();
         },
         onError: () {});
   }
@@ -100,6 +109,9 @@ class ProviderAccount extends ChangeNotifier {
           _resendOTPToken = forceResendingToken;
 
           Fluttertoast.showToast(msg: "Verification code is re-sent to your phone number!");
+
+          _resetOtpResendTimer();
+
         },
         onError: () {});
   }
@@ -331,5 +343,26 @@ class ProviderAccount extends ChangeNotifier {
     }
 
     submitLoading = false;
+  }
+
+  void _resetOtpResendTimer()async{
+    _timerValue = 60;
+    _showResendOtpOption = false;
+    notifyListeners();
+
+    Timer.periodic(
+      const Duration(seconds: 1),
+          (Timer timer) {
+        if(_timerValue<=1){
+          timer.cancel();
+          _showResendOtpOption = true;
+          notifyListeners();
+          return;
+        }
+        _timerValue--;
+        notifyListeners();
+      },
+    );
+
   }
 }

@@ -106,22 +106,43 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      providerAccount.resendOtpCode();
-                    },
-                    child: Text(
-                      LanguageKey.resendOTPCode.tr,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: Colors.lightBlueAccent,
-                        decoration: TextDecoration.underline,
-                      ),
+              providerAccount.showResendOtpOption
+                  ? Row(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            providerAccount.resendOtpCode();
+                          },
+                          child: Text(
+                            LanguageKey.resendOTPCode.tr,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: Colors.lightBlueAccent,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "${LanguageKey.resendIn.tr}: ",
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: AppColors.grey600,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "${providerAccount.timerValue}",
+                                style: theme.textTheme.bodyMedium
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  )
-                ],
-              )
             ],
           ),
         ),

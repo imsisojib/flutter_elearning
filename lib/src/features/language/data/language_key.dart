@@ -24,4 +24,5 @@ class LanguageKey{
   static const String withoutCountryCode = "withoutCountryCode";
   static const String enterTheCode = "enterTheCode";
   static const String loginWithParentCode = "loginWithParentCode";
+  static const String resendIn = "resendIn";
 }
