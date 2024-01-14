@@ -127,7 +127,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
         bottomNavigationBar: Container(
           height: 100.h,
           padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
+            horizontal: 16.w,
             vertical: 16.h,
           ),
           child: Column(
