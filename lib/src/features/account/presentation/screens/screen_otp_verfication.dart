@@ -75,7 +75,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
                   borderRadius: BorderRadius.circular(16),
-                  fieldHeight: 55.h,
+                  fieldHeight: 65.h,
                   fieldWidth: 55.h,
                   borderWidth: 1,
                   //errorBorderColor: AppColors.grey75.withOpacity(.2),
@@ -136,7 +136,9 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                               ),
                               TextSpan(
                                 text: "${providerAccount.timerValue}",
-                                style: theme.textTheme.bodyMedium
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: AppColors.grey600,
+                                ),
                               ),
                             ],
                           ),
