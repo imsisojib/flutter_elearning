@@ -187,12 +187,12 @@ class ProviderAccount extends ChangeNotifier {
       );
       return;
     }
-    if (role?.isEmpty ?? true) {
-      Fluttertoast.showToast(
-        msg: "Please select your joining type!",
-      );
-      return;
-    }
+    // if (role?.isEmpty ?? true) {
+    //   Fluttertoast.showToast(
+    //     msg: "Please select your joining type!",
+    //   );
+    //   return;
+    // }
 
     loading = true;
 
@@ -200,7 +200,7 @@ class ProviderAccount extends ChangeNotifier {
       firstName: firstName!,
       lastName: lastName!,
       email: email,
-      role: role!,
+      role: role??"",
     );
 
     if (response.statusCode == 200) {

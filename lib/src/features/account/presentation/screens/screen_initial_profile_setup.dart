@@ -94,25 +94,25 @@ class _ScreenInitialProfileSetupState extends State<ScreenInitialProfileSetup> {
                       isMandatoryField: true,
                       controller: emailTextEditingController,
                     ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    AdvanceDropDown<EUserRole>(
-                      titleText: LanguageKey.registerAs.tr,
-                      isMandatoryField: true,
-                      hintText: LanguageKey.select.tr,
-                      items: EUserRole.values
-                          .map(
-                            (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(e.name),
-                        ),
-                      )
-                          .toList(),
-                      onChanged: (EUserRole? value){
-                        role = value?.name;
-                      },
-                    ),
+                    // SizedBox(
+                    //   height: 8.h,
+                    // ),
+                    // AdvanceDropDown<EUserRole>(
+                    //   titleText: LanguageKey.registerAs.tr,
+                    //   isMandatoryField: true,
+                    //   hintText: LanguageKey.select.tr,
+                    //   items: EUserRole.values
+                    //       .map(
+                    //         (e) => DropdownMenuItem(
+                    //       value: e,
+                    //       child: Text(e.name),
+                    //     ),
+                    //   )
+                    //       .toList(),
+                    //   onChanged: (EUserRole? value){
+                    //     role = value?.name;
+                    //   },
+                    // ),
                   ],
                 ),
                 SizedBox(
