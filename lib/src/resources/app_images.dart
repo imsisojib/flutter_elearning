@@ -22,5 +22,8 @@ class AppImages{
   static const String iconBottomArrow = "assets/images/icons/icon_bottom_arrow.png";
   static const String iconCalendar = "assets/images/icons/icon_calendar.png";
   static const String iconRefresh = "assets/images/icons/icon_refresh.png";
+  static const String iconPerson = "assets/images/icons/icon_person.png";
+  static const String iconCheck = "assets/images/icons/icon_check.png";
+  static const String iconSend = "assets/images/icons/icon_send.png";
 
 }
