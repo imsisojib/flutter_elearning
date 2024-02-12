@@ -118,21 +118,39 @@ TextTheme _buildLightTextTheme(TextTheme base) {
     ),
     bodyLarge: GoogleFonts.tajawal(  //bodyText1
       fontWeight: FontWeight.normal,
-      fontSize: 16.sp,
+      fontSize: 18.sp,
       letterSpacing: 0.2,
       color: AppColors.textColorLight,
     ),
     bodyMedium: GoogleFonts.tajawal(  //bodyText2
       fontWeight: FontWeight.normal,
-      fontSize: 14.sp,
+      fontSize: 16.sp,
       letterSpacing: -0.05,
       color: AppColors.textColorLight,
     ),
     bodySmall: GoogleFonts.tajawal(  //caption
       fontWeight: FontWeight.normal,
-      fontSize: 12,
+      fontSize: 14,
       letterSpacing: 0.2,
       color: AppColors.textColorLight,
+    ),
+    labelLarge: GoogleFonts.tajawal(  //bodyText1
+      fontWeight: FontWeight.normal,
+      fontSize: 14.sp,
+      letterSpacing: 0.2,
+      color: AppColors.textColorLabelLight,
+    ),
+    labelMedium: GoogleFonts.tajawal(  //bodyText2
+      fontWeight: FontWeight.normal,
+      fontSize: 12.sp,
+      letterSpacing: -0.05,
+      color: AppColors.textColorLabelLight,
+    ),
+    labelSmall: GoogleFonts.tajawal(  //caption
+      fontWeight: FontWeight.normal,
+      fontSize: 10.sp,
+      letterSpacing: 0.2,
+      color: AppColors.textColorLabelLight,
     ),
   );
 }

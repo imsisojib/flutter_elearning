@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/core/data/enums/e_bottomnav.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/bottom_navigationbar/bottom_navigationbar.dart';
+import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/basic_button.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/image/circular_image.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
+import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -53,14 +55,15 @@ class _ScreenHomeState extends State<ScreenHome> {
             slivers: [
               SliverToBoxAdapter(
                 child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 24.w,
-                          vertical: 32.h,
-                        ),
-                        child: providerAccount.loading
-                            ? const Center(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 32.h,
+                  ),
+                  child: providerAccount.loading
+                      ? const Center(
                           child: CircularProgressIndicator(),
-                        ): Row(
+                        )
+                      : Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -102,8 +105,32 @@ class _ScreenHomeState extends State<ScreenHome> {
                             ),
                           ],
                         ),
-                      ),
+                ),
               ),
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    BasicButton(
+                      buttonText: "Create Class",
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.classCreateScreen,
+                        );
+                      },
+                    ),
+                    BasicButton(
+                      buttonText: "Inviation Class",
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.classInvitationScreen,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              )
             ],
           )),
           bottomNavigationBar: const CustomBottomNavigationBar(
