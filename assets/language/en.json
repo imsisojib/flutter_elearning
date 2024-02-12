@@ -44,5 +44,7 @@
   "demoUserName": "Sirajul Islam",
   "demoPhoneNumber": "01521315259",
   "send": "Send",
-  "sent": "Sent"
+  "sent": "Sent",
+  "saturday": "Saturday",
+  "classTime" : "classTime"
 }

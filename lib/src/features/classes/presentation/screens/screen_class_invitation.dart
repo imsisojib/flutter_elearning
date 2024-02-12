@@ -100,6 +100,7 @@ class ScreenClassInvitation extends StatelessWidget {
                       height: 8.h,
                     ),
                     Row(
+                      textDirection: TextDirection.ltr,
                       children: [
                         Container(
                           height: 65.h,
@@ -230,17 +231,17 @@ class ScreenClassInvitation extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 100.h,
+        height: 80.h,
         padding: EdgeInsets.symmetric(
           horizontal: 16.w,
-          vertical: 16.h,
+          //vertical: 16.h,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             BasicGradientButton(
-              buttonText: LanguageKey.send.tr,
+              buttonText: "${LanguageKey.send.tr} (6)",
               backgroundColor: AppColors.primaryColorLight,
               onPressed: () {},
             )

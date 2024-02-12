@@ -47,5 +47,7 @@ class LanguageKey{
   static const String demoPhoneNumber = "demoPhoneNumber";
   static const String send = "send";
   static const String sent = "sent";
+  static const String saturday = "saturday";
+  static const String classTime = "classTime";
 
 }

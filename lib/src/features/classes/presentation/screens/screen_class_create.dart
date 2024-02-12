@@ -8,10 +8,18 @@ import 'package:flutter_boilerplate_code/src/features/language/application/trans
 import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
+import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ScreenClassCreate extends StatelessWidget {
+class ScreenClassCreate extends StatefulWidget {
   const ScreenClassCreate({super.key});
+
+  @override
+  State<ScreenClassCreate> createState() => _ScreenClassCreateState();
+}
+
+class _ScreenClassCreateState extends State<ScreenClassCreate> {
+  bool enableAllocateTime = false;
 
   @override
   Widget build(BuildContext context) {
@@ -86,39 +94,48 @@ class ScreenClassCreate extends StatelessWidget {
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
+                    !enableAllocateTime?TextButton(
+                      onPressed: () {
+                        setState(() {
+                          enableAllocateTime = !enableAllocateTime;
+                        });
+                      },
                       child: Text(
                         LanguageKey.allocateDifferentTimeForEachClass.tr,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: AppColors.primaryColorLight,
                         ),
                       ),
-                    ),
-                    // AdvanceTextFormField2(
-                    //   titleText: "Saturday Class Time",
-                    //   tittleTextStyle: theme.textTheme.bodyLarge,
-                    //   hintText: LanguageKey.select.tr,
-                    //   prefixIcon: SizedBox(
-                    //     height: 24.h,
-                    //     width: 24.h,
-                    //     child: Image.asset(
-                    //       AppImages.iconTimer,
-                    //     ),
-                    //   ),
-                    // ),
-                    // AdvanceTextFormField2(
-                    //   titleText: "Wednesday Class Time",
-                    //   tittleTextStyle: theme.textTheme.bodyLarge,
-                    //   hintText: "Select",
-                    //   prefixIcon: SizedBox(
-                    //     height: 24.h,
-                    //     width: 24.h,
-                    //     child: Image.asset(
-                    //       AppImages.iconTimer,
-                    //     ),
-                    //   ),
-                    // ),
+                    ):const SizedBox(),
+
+                    enableAllocateTime?Column(
+                      children: [
+                        AdvanceTextFormField2(
+                          titleText: "${LanguageKey.classTime.tr} ${LanguageKey.saturday.tr}",
+                          tittleTextStyle: theme.textTheme.bodyLarge,
+                          hintText: LanguageKey.select.tr,
+                          prefixIcon: SizedBox(
+                            height: 24.h,
+                            width: 24.h,
+                            child: Image.asset(
+                              AppImages.iconTimer,
+                            ),
+                          ),
+                        ),
+                        AdvanceTextFormField2(
+                          titleText: "${LanguageKey.classTime.tr} ${LanguageKey.saturday.tr}",
+                          tittleTextStyle: theme.textTheme.bodyLarge,
+                          hintText: LanguageKey.select.tr,
+                          prefixIcon: SizedBox(
+                            height: 24.h,
+                            width: 24.h,
+                            child: Image.asset(
+                              AppImages.iconTimer,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ):const SizedBox(),
                   ],
                 ),
               )
@@ -127,19 +144,21 @@ class ScreenClassCreate extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 100.h,
+        height: 80.h,
         padding: EdgeInsets.symmetric(
           horizontal: 16.w,
-          vertical: 16.h,
+          //vertical: 16.h,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             BasicGradientButton(
               buttonText: LanguageKey.saveAndContinue.tr,
               backgroundColor: AppColors.primaryColorLight,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.classInvitationScreen,);
+              },
             )
           ],
         ),

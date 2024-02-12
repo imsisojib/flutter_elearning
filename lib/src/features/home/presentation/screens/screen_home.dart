@@ -111,6 +111,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                 child: Row(
                   children: [
                     BasicButton(
+                      width: 120,
                       buttonText: "Create Class",
                       onPressed: () {
                         Navigator.pushNamed(
@@ -119,8 +120,10 @@ class _ScreenHomeState extends State<ScreenHome> {
                         );
                       },
                     ),
+                    SizedBox(width: 8,),
                     BasicButton(
-                      buttonText: "Inviation Class",
+                      width: 120,
+                      buttonText: "Invitation Class",
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
