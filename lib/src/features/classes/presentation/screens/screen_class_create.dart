@@ -4,6 +4,8 @@ import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/b
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/container_bg.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield2.dart';
+import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
+import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,16 +22,18 @@ class ScreenClassCreate extends StatelessWidget {
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
-              SliverCustomAppBar(title: "Create Class"),
+              SliverCustomAppBar(
+                title: LanguageKey.createClass.tr,
+              ),
               SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AdvanceTextFormField2(
-                      hintText: "Chapter Title (required)",
+                      hintText: "${LanguageKey.chapterTitle.tr} ${LanguageKey.requiredInBraked.tr}",
                     ),
                     AdvanceTextFormField2(
-                      hintText: "A wish that separates from to",
+                      hintText: LanguageKey.separationPeriodFromTo.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -38,18 +42,22 @@ class ScreenClassCreate extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8.h,),
+                    SizedBox(
+                      height: 8.h,
+                    ),
                     Text(
-                      "Choose class times during the semester",
+                      LanguageKey.chooseClassTimesDuringSemester.tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                     Text(
-                      "(Example: Two classes each week, on Mondays and Thursdays at 6 p.m.)",
+                      LanguageKey.chooseClassTimesDuringSemesterExample.tr,
                       style: theme.textTheme.labelMedium,
                     ),
-                    SizedBox(height: 8.h,),
+                    SizedBox(
+                      height: 8.h,
+                    ),
                     AdvanceTextFormField2(
-                      hintText: "Every Week",
+                      hintText: LanguageKey.selectWeek.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -59,7 +67,7 @@ class ScreenClassCreate extends StatelessWidget {
                       ),
                     ),
                     AdvanceTextFormField2(
-                      hintText: "Two Hours",
+                      hintText: LanguageKey.selectHours.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -69,7 +77,7 @@ class ScreenClassCreate extends StatelessWidget {
                       ),
                     ),
                     AdvanceTextFormField2(
-                      hintText: "Saturday Wednesday",
+                      hintText: LanguageKey.selectDays.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -78,31 +86,39 @@ class ScreenClassCreate extends StatelessWidget {
                         ),
                       ),
                     ),
-                    AdvanceTextFormField2(
-                      titleText: "Saturday Class Time",
-                      tittleTextStyle: theme.textTheme.bodyLarge,
-                      hintText: "Select",
-                      prefixIcon: SizedBox(
-                        height: 24.h,
-                        width: 24.h,
-                        child: Image.asset(
-                          AppImages.iconTimer,
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        LanguageKey.allocateDifferentTimeForEachClass.tr,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: AppColors.primaryColorLight,
                         ),
                       ),
                     ),
-
-                    AdvanceTextFormField2(
-                      titleText: "Wednesday Class Time",
-                      tittleTextStyle: theme.textTheme.bodyLarge,
-                      hintText: "Select",
-                      prefixIcon: SizedBox(
-                        height: 24.h,
-                        width: 24.h,
-                        child: Image.asset(
-                          AppImages.iconTimer,
-                        ),
-                      ),
-                    ),
+                    // AdvanceTextFormField2(
+                    //   titleText: "Saturday Class Time",
+                    //   tittleTextStyle: theme.textTheme.bodyLarge,
+                    //   hintText: LanguageKey.select.tr,
+                    //   prefixIcon: SizedBox(
+                    //     height: 24.h,
+                    //     width: 24.h,
+                    //     child: Image.asset(
+                    //       AppImages.iconTimer,
+                    //     ),
+                    //   ),
+                    // ),
+                    // AdvanceTextFormField2(
+                    //   titleText: "Wednesday Class Time",
+                    //   tittleTextStyle: theme.textTheme.bodyLarge,
+                    //   hintText: "Select",
+                    //   prefixIcon: SizedBox(
+                    //     height: 24.h,
+                    //     width: 24.h,
+                    //     child: Image.asset(
+                    //       AppImages.iconTimer,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               )
@@ -121,11 +137,9 @@ class ScreenClassCreate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BasicGradientButton(
-              buttonText: "Create Class",
+              buttonText: LanguageKey.saveAndContinue.tr,
               backgroundColor: AppColors.primaryColorLight,
-              onPressed: () {
-
-              },
+              onPressed: () {},
             )
           ],
         ),

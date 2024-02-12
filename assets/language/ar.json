@@ -24,6 +24,25 @@
   "withoutCountryCode" : "بدون رمز البلد: ",
   "enterTheCode" : "إدخال الكود",
   "loginWithParentCode" : "الدخول بكود من الآباءد",
-  "resendIn" : "إعادة الإرسال في"
+  "resendIn" : "إعادة الإرسال في",
 
+  "createClass": "إنشاء فصل ",
+  "chapterTitle": "عنوان فصل",
+  "separationPeriodFromTo": "فترة فصل من - إلى ",
+  "chooseClassTimesDuringSemester": "اختر مواعيد الحصص خلال فصل",
+  "chooseClassTimesDuringSemesterExample": "( مثال: كل أسبوع حصتان يومي الأثنين والخميس الساعة 6 مسءا)",
+  "selectWeek": "كل أسبوع",
+  "selectHours": "حصتان ",
+  "selectDays": "السبت, الأربعاء",
+  "selectTime": "الوقت",
+  "allocateDifferentTimeForEachClass": "تخصيص ميعاد مختلف لكل حصة",
+  "saveAndContinue": "حفظ و إستمرار",
+
+  "inviteStudents": "دعوة طلاب",
+  "youCanShareClassInvitationLink": "يمكنك مشاركة رابط دعوة للفصل",
+  "copyLink": "نسخ الرابط",
+  "demoUserName": "أحمد محمد",
+  "demoPhoneNumber": "01166060989",
+  "send": "إرسال",
+  "sent": "تم الإرسال"
 }

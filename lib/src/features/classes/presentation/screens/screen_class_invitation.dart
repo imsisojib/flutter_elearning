@@ -4,6 +4,8 @@ import 'package:flutter_boilerplate_code/src/core/presentation/widgets/buttons/b
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/container_bg.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield2.dart';
+import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
+import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +22,9 @@ class ScreenClassInvitation extends StatelessWidget {
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
-              const SliverCustomAppBar(title: "Invite Students"),
+              SliverCustomAppBar(
+                title: LanguageKey.inviteStudents.tr,
+              ),
               SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,11 +33,12 @@ class ScreenClassInvitation extends StatelessWidget {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: "You can share a link to the class invitation ",
+                            text: LanguageKey.youCanShareClassInvitationLink.tr,
                             style: theme.textTheme.bodyMedium,
                           ),
+                          TextSpan(text: " ",),
                           TextSpan(
-                            text: "Copy the link",
+                            text: LanguageKey.copyLink.tr,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: AppColors.primaryColorLight,
                             ),
@@ -60,7 +65,7 @@ class ScreenClassInvitation extends StatelessWidget {
                           padding: const EdgeInsets.all(2),
                           child: Center(
                             child: Text(
-                              "Phone Number",
+                              LanguageKey.phoneNumber.tr,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: AppColors.white,
                               ),
@@ -84,7 +89,7 @@ class ScreenClassInvitation extends StatelessWidget {
                           padding: const EdgeInsets.all(2),
                           child: Center(
                             child: Text(
-                              "Email",
+                              LanguageKey.email.tr,
                               style: theme.textTheme.bodySmall?.copyWith(),
                             ),
                           ),
@@ -123,7 +128,7 @@ class ScreenClassInvitation extends StatelessWidget {
                         ),
                         Expanded(
                           child: AdvanceTextFormField2(
-                            hintText: "Enter Phone Number",
+                            hintText: LanguageKey.phoneNumber.tr,
                           ),
                         ),
                       ],
@@ -146,8 +151,11 @@ class ScreenClassInvitation extends StatelessWidget {
                         Transform.scale(
                           scale: 1.5,
                           child: Checkbox(
-                            value: index == 0,
+                            value: index>3,
                             fillColor: MaterialStateProperty.resolveWith((states) {
+                              if (!states.contains(MaterialState.selected) && index==3) {
+                                return AppColors.textColorLabelLight;
+                              }
                               if (!states.contains(MaterialState.selected)) {
                                 return Colors.white;
                               }
@@ -166,15 +174,12 @@ class ScreenClassInvitation extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Demo User Name",
-                                style: theme.textTheme.bodyMedium
-                              ),
+                              Text(LanguageKey.demoUserName.tr, style: theme.textTheme.bodyMedium),
                               SizedBox(
                                 height: 4.h,
                               ),
                               Text(
-                                "011660000089",
+                                LanguageKey.demoPhoneNumber.tr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: AppColors.textColorLabelLight,
                                 ),
@@ -182,7 +187,7 @@ class ScreenClassInvitation extends StatelessWidget {
                             ],
                           ),
                         ),
-                        index == 0
+                        index == 3
                             ? Row(
                                 children: [
                                   Image.asset(
@@ -190,8 +195,9 @@ class ScreenClassInvitation extends StatelessWidget {
                                     width: 24.h,
                                     height: 24.h,
                                   ),
+                                  SizedBox(width: 4.w,),
                                   Text(
-                                    "Invited",
+                                    LanguageKey.sent.tr,
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: AppColors.primaryColorLight,
                                     ),
@@ -205,8 +211,9 @@ class ScreenClassInvitation extends StatelessWidget {
                                     width: 24.h,
                                     height: 24.h,
                                   ),
+                                  SizedBox(width: 4.w,),
                                   Text(
-                                    "Invite",
+                                    LanguageKey.send.tr,
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: AppColors.primaryColorLight,
                                     ),
@@ -233,7 +240,7 @@ class ScreenClassInvitation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BasicGradientButton(
-              buttonText: "Invite",
+              buttonText: LanguageKey.send.tr,
               backgroundColor: AppColors.primaryColorLight,
               onPressed: () {},
             )

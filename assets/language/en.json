@@ -24,5 +24,25 @@
   "withoutCountryCode" : "without country code: ",
   "enterTheCode" : "Enter the code",
   "loginWithParentCode" : "Login with parent code",
-  "resendIn" : "Resend in"
+  "resendIn" : "Resend in",
+
+  "createClass": "Create Class",
+  "chapterTitle": "Chapter Title",
+  "separationPeriodFromTo": "Separation period from - to",
+  "chooseClassTimesDuringSemester": "Choose class times during the semester",
+  "chooseClassTimesDuringSemesterExample": "(Example: Two classes each week, on Mondays and Thursdays at 6 p.m.)",
+  "selectWeek": "Select Week",
+  "selectHours": "Select Hours",
+  "selectDays": "Select Days",
+  "selectTime": "Select Time",
+  "allocateDifferentTimeForEachClass": "Allocate different time for each class",
+  "saveAndContinue": "Save and Continue",
+
+  "inviteStudents": "Invite Students",
+  "youCanShareClassInvitationLink": "You can share a class invitation link ",
+  "copyLink": "copy link",
+  "demoUserName": "Sirajul Islam",
+  "demoPhoneNumber": "01521315259",
+  "send": "Send",
+  "sent": "Sent"
 }

@@ -25,4 +25,27 @@ class LanguageKey{
   static const String enterTheCode = "enterTheCode";
   static const String loginWithParentCode = "loginWithParentCode";
   static const String resendIn = "resendIn";
+
+  ///Create Class
+  static const String createClass = "createClass";
+  static const String chapterTitle = "chapterTitle";
+  static const String separationPeriodFromTo = "separationPeriodFromTo";
+  static const String chooseClassTimesDuringSemester = "chooseClassTimesDuringSemester";
+  static const String chooseClassTimesDuringSemesterExample = "chooseClassTimesDuringSemesterExample";
+  static const String selectWeek = "selectWeek";
+  static const String selectHours= "selectHours";
+  static const String selectDays = "selectDays";
+  static const String selectTime = "selectTime";
+  static const String allocateDifferentTimeForEachClass = "allocateDifferentTimeForEachClass";
+  static const String saveAndContinue = "saveAndContinue";
+
+  ///Invite Students
+  static const String inviteStudents = "inviteStudents";
+  static const String youCanShareClassInvitationLink = "youCanShareClassInvitationLink";
+  static const String copyLink = "copyLink";
+  static const String demoUserName = "demoUserName";
+  static const String demoPhoneNumber = "demoPhoneNumber";
+  static const String send = "send";
+  static const String sent = "sent";
+
 }
