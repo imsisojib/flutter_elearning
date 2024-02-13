@@ -20,31 +20,44 @@ class SliverCustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return SliverAppBar(
-      toolbarHeight: kToolbarHeight + 24.h,
+      toolbarHeight: kToolbarHeight,
       pinned: pinned,
       automaticallyImplyLeading: false,
       centerTitle: false,
-      title: Text(
-        title,
-        style: theme.textTheme.titleMedium?.copyWith(
-          fontSize: 24.sp,
-          color: AppColors.grey400,
-          fontWeight: FontWeight.w600,
-        ),
+      backgroundColor: Colors.transparent,
+      flexibleSpace: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              showBackButton
+                  ? IconButton(
+                padding: EdgeInsets.zero,
+                iconSize: 16.h,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: AppColors.textColorLight,
+                ),
+              )
+                  : const SizedBox(),
+              Text(
+                title,
+                style: theme.textTheme.displayMedium?.copyWith(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
+            ],
+          )
+        ],
       ),
-      leading: showBackButton
-          ? IconButton(
-              iconSize: 20.h,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: AppColors.grey400,
-              ),
-            )
-          : null,
-      actions: actions,
+      //title: ,
+      //leading:
+      //actions: actions,
     );
   }
 }

@@ -4,6 +4,8 @@ class AppColors {
 
   //textColor
   static const Color textColorLight = Color(0xFF030303);
+  static const Color textColorLabelLight = Color(0xFFBCC1CD);
+  static const Color textColorInputLight = Color(0xFF3B3B3B);
   static const Color textColorHeadlineLight = Color(0xFF2D264B);
   static const Color textColorDark = Color(0xFFF3F9FE);
 
@@ -51,13 +53,14 @@ class AppColors {
   static const Color popupBackground = Color(0xff4B3171);
   static const Color popupStroke = Color(0xff8148C3);
 
-  //#region MUSEIQ Color Palette
+  //#region eLearning Color Palette
   static const Color red = Color(0xffCC2B51);
   static const Color green = Color(0xffB2EE96);
   //static const Color accentPurple = Color(0xff43127B);  //use primaryColor instead
   static const Color topSheet = Color(0xff301F43);
   static const Color bottomSheet = Color(0xff251830);
   static const Color background = Color(0xff291D3A);
+  static const Color borderColorLight = Color(0xffE0E0E0);
 
   //text-colors
   static const Color white = Color(0xffFFFFFF);

@@ -27,7 +27,7 @@ class BasicGradientButton extends StatelessWidget {
     required this.buttonText,
     this.buttonTextStyle,
     this.elevation = 1,
-    this.borderRadius = 25,
+    this.borderRadius = 50,
     this.textAlign,
     this.mainAxisAlignment = MainAxisAlignment.spaceAround,
   });
@@ -52,12 +52,14 @@ class BasicGradientButton extends StatelessWidget {
           height: height!.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderRadius.h),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                AppColors.primaryColorLight,
-                AppColors.primaryColorLight.withOpacity(.4),
+                Color((0xff24CCA8)),
+                Color((0xff29E4BC)),
+                Color((0xff29E4BC)),
+                Color((0xffB0FDEC)),
               ]
             )
           ),

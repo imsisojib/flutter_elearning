@@ -10,7 +10,7 @@ class AdvanceTextFormField extends StatelessWidget {
   final bool isMandatoryField;
   final int? maxLength;
   final int? maxLines;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
   final bool enabled;
   final bool obscureText;
   final Function? onChanged;
@@ -48,47 +48,47 @@ class AdvanceTextFormField extends StatelessWidget {
 
     //for dark and light theme
     Color fillColor = theme.brightness==Brightness.light? AppColors.white : AppColors.topSheet;
-    Color borderColor = theme.brightness==Brightness.light? AppColors.grey400 : AppColors.popupStroke;
+    Color borderColor = theme.brightness==Brightness.light? AppColors.borderColorLight : AppColors.popupStroke;
 
-    return Column(
-      children: [
-        titleText == null
-            ? const SizedBox()
-            : Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        titleText ?? "",
-                        style: theme.textTheme.labelMedium?.copyWith(
-                          color: AppColors.grey600,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.h,),
+      child: Column(
+        children: [
+          titleText == null
+              ? const SizedBox()
+              : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          titleText ?? "",
+                          style: tittleTextStyle??theme.textTheme.labelMedium?.copyWith(
+                            color: AppColors.grey600,
+                          ),
                         ),
-                      ),
-                      isMandatoryField
-                          ? Text(
-                        " *",
-                        style: theme.textTheme.labelMedium?.copyWith(
-                          color: AppColors.red,
-                        ),
-                      )
-                          : const Text(""),
-                    ],
-                  ),
-                  additionalTittleText==null?const SizedBox(): Text(
-                    additionalTittleText ?? "",
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: AppColors.grey600,
+                        isMandatoryField
+                            ? Text(
+                          " *",
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: AppColors.red,
+                          ),
+                        )
+                            : const Text(""),
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                ],
-              ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: TextFormField(
+                    additionalTittleText==null?const SizedBox(): Text(
+                      additionalTittleText ?? "",
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: AppColors.grey600,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                  ],
+                ),
+          TextFormField(
             initialValue: initialValue,
             controller: controller,
             onChanged: (value) {
@@ -98,7 +98,9 @@ class AdvanceTextFormField extends StatelessWidget {
               FocusScope.of(context).requestFocus(FocusNode());
             },
             cursorColor: AppColors.red,
-            style: theme.textTheme.bodyMedium,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontSize: 18.sp,
+            ),
             obscureText: obscureText,
             keyboardType: keyboardType,
             textInputAction: textInputAction,
@@ -108,47 +110,57 @@ class AdvanceTextFormField extends StatelessWidget {
             decoration: InputDecoration(
               fillColor: backgroundColor ?? fillColor,
               filled: true,
-              contentPadding: EdgeInsets.fromLTRB(10.w, 20.h, 10.w, 20.h),
+              contentPadding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 16.h),
+              //prefixIcon: prefixIcon,
               prefixIcon: prefixIcon,
+              // prefixIconConstraints: BoxConstraints(
+              //   maxHeight: 16.h,
+              // ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
                   color: borderColor,
+                  width: 2,
                 ),
               ),
               disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
                   color: borderColor,
+                  width: 2,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
                   color: borderColor,
+                  width: 2,
                 ),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
                   color: borderColor,
+                  width: 2,
                 ),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
                   color: borderColor,
+                  width: 2,
                 ),
               ),
               hintText: hintText,
               hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.grey400,
+                color: AppColors.textColorLabelLight,
+                fontSize: 18.sp,
               ),
               enabled: enabled,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

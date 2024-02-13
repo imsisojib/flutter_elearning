@@ -17,6 +17,10 @@ class Routes {
   static const String courseUpdateScreen = "/courses/update";
   static const String courseCategorySelectScreen = "/courses/categories/select";
 
+  //CLASS
+  static const String classCreateScreen = "/classes/create";
+  static const String classInvitationScreen = "/classes/invitation";
+
   ///LANGUAGE
   static const String languageSelectScreen = "/languages/select";
 }

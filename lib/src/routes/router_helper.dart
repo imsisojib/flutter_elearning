@@ -5,6 +5,8 @@ import 'package:flutter_boilerplate_code/src/features/account/presentation/scree
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_my_profile.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_otp_verfication.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_profile_edit.dart';
+import 'package:flutter_boilerplate_code/src/features/classes/presentation/screens/screen_class_create.dart';
+import 'package:flutter_boilerplate_code/src/features/classes/presentation/screens/screen_class_invitation.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_course_add.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_course_update.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_courses.dart';
@@ -76,6 +78,16 @@ class RouterHelper {
     return const ScreenSelectCourseCategory();
   });
 
+  ///CLASS
+  static final Handler _classCreateScreenHandler =
+  Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
+    return const ScreenClassCreate();
+  });
+  static final Handler _classInvitationScreenHandler =
+  Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
+    return const ScreenClassInvitation();
+  });
+
   ///LANGUAGE
   static final Handler _selectLanguageScreenHandler =
   Handler(handlerFunc: (context, Map<String, dynamic> parameters) {
@@ -106,6 +118,10 @@ class RouterHelper {
     router.define(Routes.courseAddScreen, handler: _courseAddScreenHandler, transitionType: TransitionType.cupertino);
     router.define(Routes.courseUpdateScreen, handler: _courseUpdateScreenHandler, transitionType: TransitionType.cupertino);
     router.define(Routes.courseCategorySelectScreen, handler: _courseCategorySelectScreenHandler, transitionType: TransitionType.cupertino);
+
+    ///CLASSES
+    router.define(Routes.classCreateScreen, handler: _classCreateScreenHandler, transitionType: TransitionType.cupertino);
+    router.define(Routes.classInvitationScreen, handler: _classInvitationScreenHandler, transitionType: TransitionType.cupertino);
 
     ///LANGUAGE
     router.define(Routes.languageSelectScreen, handler: _selectLanguageScreenHandler, transitionType: TransitionType.cupertino);

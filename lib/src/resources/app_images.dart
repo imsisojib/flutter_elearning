@@ -16,4 +16,15 @@ class AppImages{
   static const String graphicDone = "assets/images/graphic_done.jpeg";
   static const String graphicSuccess = "assets/images/graphic_success.jpeg";
 
+  ///ICONS
+  static const String iconDateEdit = "assets/images/icons/icon_date_edit.png";
+  static const String iconTimer = "assets/images/icons/icon_timer.png";
+  static const String iconBottomArrow = "assets/images/icons/icon_bottom_arrow.png";
+  static const String iconCalendar = "assets/images/icons/icon_calendar.png";
+  static const String iconRefresh = "assets/images/icons/icon_refresh.png";
+  static const String iconPerson = "assets/images/icons/icon_person.png";
+  static const String iconCheck = "assets/images/icons/icon_check.png";
+  static const String iconSend = "assets/images/icons/icon_send.png";
+  static const String iconCheckWhite = "assets/images/icons/icon_check_white.png";
+
 }
