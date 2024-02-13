@@ -5,6 +5,7 @@
   "otpCodeWillBeSend" : "OTP code will be send",
   "phoneNumber" : "Phone Number",
   "continue" : "Continue",
+  "later" : "Later",
   "enterTheVerificationCode" : "Enter The Verification Code",
   "otp6NumbersWillBeSentForVerification" : "6 digits OTP code has sent for verification",
   "resendOTPCode" : "Re-send OTP",

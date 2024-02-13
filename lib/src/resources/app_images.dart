@@ -25,5 +25,6 @@ class AppImages{
   static const String iconPerson = "assets/images/icons/icon_person.png";
   static const String iconCheck = "assets/images/icons/icon_check.png";
   static const String iconSend = "assets/images/icons/icon_send.png";
+  static const String iconCheckWhite = "assets/images/icons/icon_check_white.png";
 
 }

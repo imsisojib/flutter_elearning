@@ -5,6 +5,7 @@ class LanguageKey{
   static const String otpCodeWillBeSend = "otpCodeWillBeSend";
   static const String phoneNumber = "phoneNumber";
   static const String continueText = "continue";
+  static const String later = "later";
   static const String enterTheVerificationCode = "enterTheVerificationCode";
   static const String otp6NumbersWillBeSentForVerification = "otp6NumbersWillBeSentForVerification";
   static const String resendOTPCode = "resendOTPCode";
