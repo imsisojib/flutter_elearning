@@ -65,7 +65,7 @@ class _ScreenClassCreateState extends State<ScreenClassCreate> {
                       height: 8.h,
                     ),
                     AdvanceTextFormField2(
-                      hintText: LanguageKey.selectWeek.tr,
+                      initialValue: LanguageKey.selectWeek.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -75,7 +75,7 @@ class _ScreenClassCreateState extends State<ScreenClassCreate> {
                       ),
                     ),
                     AdvanceTextFormField2(
-                      hintText: LanguageKey.selectHours.tr,
+                      initialValue: LanguageKey.selectHours.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -85,7 +85,7 @@ class _ScreenClassCreateState extends State<ScreenClassCreate> {
                       ),
                     ),
                     AdvanceTextFormField2(
-                      hintText: LanguageKey.selectDays.tr,
+                      initialValue: LanguageKey.selectDays.tr,
                       prefixIcon: SizedBox(
                         height: 24.h,
                         width: 24.h,
@@ -94,6 +94,16 @@ class _ScreenClassCreateState extends State<ScreenClassCreate> {
                         ),
                       ),
                     ),
+                    !enableAllocateTime?AdvanceTextFormField2(
+                      hintText: LanguageKey.select.tr,
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.h,
+                        child: Image.asset(
+                          AppImages.iconTimer,
+                        ),
+                      ),
+                    ):const SizedBox(),
                     !enableAllocateTime?TextButton(
                       onPressed: () {
                         setState(() {

@@ -113,9 +113,13 @@ class AdvanceTextFormField2 extends StatelessWidget {
                 ),
 
                 Expanded(
-                  child: TextField(
+                  child: TextFormField(
+                    initialValue: initialValue,
                     controller: controller,
                     keyboardType: TextInputType.phone,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: AppColors.textColorInputLight,
+                    ),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: hintText,

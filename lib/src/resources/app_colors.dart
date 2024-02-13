@@ -5,6 +5,7 @@ class AppColors {
   //textColor
   static const Color textColorLight = Color(0xFF030303);
   static const Color textColorLabelLight = Color(0xFFBCC1CD);
+  static const Color textColorInputLight = Color(0xFF3B3B3B);
   static const Color textColorHeadlineLight = Color(0xFF2D264B);
   static const Color textColorDark = Color(0xFFF3F9FE);
 
