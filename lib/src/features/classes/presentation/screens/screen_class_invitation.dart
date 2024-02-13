@@ -155,7 +155,7 @@ class ScreenClassInvitation extends StatelessWidget {
                             value: index>3,
                             fillColor: MaterialStateProperty.resolveWith((states) {
                               if (!states.contains(MaterialState.selected) && index==3) {
-                                return AppColors.textColorLabelLight;
+                                return const Color(0xffD9D9D9);
                               }
                               if (!states.contains(MaterialState.selected)) {
                                 return Colors.white;
