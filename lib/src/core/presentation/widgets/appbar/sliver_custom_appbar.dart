@@ -46,7 +46,7 @@ class SliverCustomAppBar extends StatelessWidget {
                   : const SizedBox(),
               Text(
                 title,
-                style: theme.textTheme.titleMedium?.copyWith(
+                style: theme.textTheme.displayMedium?.copyWith(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w700,
                 ),
