@@ -6,32 +6,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCheckBox extends StatelessWidget {
   final ECheckBoxState state;
+  final Function? onSelected;
+  final Function? onRemoveSelected;
 
-  const CustomCheckBox({super.key, required this.state});
+  const CustomCheckBox({super.key, required this.state, this.onSelected, this.onRemoveSelected});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 31.h,
-      width: 31.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.w),
-        border: Border.all(color: const Color(0xff000000).withOpacity(.2)),
-        color: state == ECheckBoxState.checked
-            ? AppColors.primaryColorLight
-            : state == ECheckBoxState.disabled
-                ? const Color(0xffD9D9D9)
-                : Colors.white,
+    return InkWell(
+      onTap: (){
+        if(state==ECheckBoxState.checked){
+          onRemoveSelected?.call();
+        }else if(state==ECheckBoxState.unChecked){
+          onSelected?.call();
+        }
+      },
+      child: Container(
+        height: 31.h,
+        width: 31.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.w),
+          border: Border.all(color: const Color(0xff000000).withOpacity(.2)),
+          color: state == ECheckBoxState.checked
+              ? AppColors.primaryColorLight
+              : state == ECheckBoxState.disabled
+                  ? const Color(0xffD9D9D9)
+                  : Colors.white,
+        ),
+        child: state == ECheckBoxState.checked
+            ? Center(
+                child: Image.asset(
+                  AppImages.iconCheckWhite,
+                  width: 24.h,
+                  height: 24.h,
+                ),
+              )
+            : const SizedBox(),
       ),
-      child: state == ECheckBoxState.checked
-          ? Center(
-              child: Image.asset(
-                AppImages.iconCheckWhite,
-                width: 24.h,
-                height: 24.h,
-              ),
-            )
-          : const SizedBox(),
     );
   }
 }

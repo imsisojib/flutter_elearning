@@ -13,6 +13,7 @@ import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_fi
 import 'package:flutter_boilerplate_code/src/features/account/data/repositories/repository_account.dart';
 import 'package:flutter_boilerplate_code/src/features/account/domain/interfaces/interface_repository_account.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/classes/presentation/providers/provider_invitations.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/data/repositories/repository_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/domain/interface_repository_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
@@ -64,6 +65,7 @@ Future<void> init() async {
   sl.registerFactory(() => ProviderAccount(repositoryAccount: sl()));
   sl.registerFactory(() => ProviderCourses(repositoryCourses: sl()));
   sl.registerFactory(() => ProviderLanguage(cacheRepository: sl()));
+  sl.registerFactory(() => ProviderInvitations());
 
   ///Interceptors
   sl.registerLazySingleton<IFirebaseDBInterceptor>(

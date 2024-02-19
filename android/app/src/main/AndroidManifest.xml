@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.your_org.your_project_id.flutter_oilerplate_code">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+
    <application
         android:label="e-Learning"
         android:name="${applicationName}"
