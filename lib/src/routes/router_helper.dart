@@ -5,8 +5,8 @@ import 'package:flutter_boilerplate_code/src/features/account/presentation/scree
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_my_profile.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_otp_verfication.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/screens/screen_profile_edit.dart';
-import 'package:flutter_boilerplate_code/src/features/classes/presentation/screens/screen_class_create.dart';
-import 'package:flutter_boilerplate_code/src/features/classes/presentation/screens/screen_class_invitation.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/screens/screen_class_create.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/screens/screen_class_invitation.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_course_add.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_course_update.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/screens/screen_courses.dart';

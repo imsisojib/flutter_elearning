@@ -7,9 +7,9 @@ import 'package:flutter_boilerplate_code/src/core/presentation/widgets/checkbox/
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/container_bg.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield.dart';
 import 'package:flutter_boilerplate_code/src/core/presentation/widgets/textfields/advance_textfield2.dart';
-import 'package:flutter_boilerplate_code/src/features/classes/presentation/providers/provider_invitations.dart';
-import 'package:flutter_boilerplate_code/src/features/classes/presentation/widgets/invitation_tile.dart';
-import 'package:flutter_boilerplate_code/src/features/classes/presentation/widgets/invitation_tile_disabled.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/providers/provider_invitations.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/widgets/invitation_tile.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/widgets/invitation_tile_disabled.dart';
 import 'package:flutter_boilerplate_code/src/features/language/application/translation_extention.dart';
 import 'package:flutter_boilerplate_code/src/features/language/data/language_key.dart';
 import 'package:flutter_boilerplate_code/src/helpers/debugger_helper.dart';
