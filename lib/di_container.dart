@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_boilerplate_code/src/config/config_api.dart';
+import 'package:flutter_boilerplate_code/src/config/config_app.dart';
 import 'package:flutter_boilerplate_code/src/core/application/api_interceptor.dart';
 import 'package:flutter_boilerplate_code/src/core/application/navigation_service.dart';
 import 'package:flutter_boilerplate_code/src/core/application/token_service.dart';
@@ -13,6 +14,8 @@ import 'package:flutter_boilerplate_code/src/core/domain/interfaces/interface_fi
 import 'package:flutter_boilerplate_code/src/features/account/data/repositories/repository_account.dart';
 import 'package:flutter_boilerplate_code/src/features/account/domain/interfaces/interface_repository_account.dart';
 import 'package:flutter_boilerplate_code/src/features/account/presentation/providers/provider_account.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/data/repositories/repository_sessions.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/domain/interface_repository_sessions.dart';
 import 'package:flutter_boilerplate_code/src/features/sessions/presentation/providers/provider_invitations.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/data/repositories/repository_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/courses/domain/interface_repository_courses.dart';
@@ -53,6 +56,11 @@ Future<void> init() async {
       firebaseInterceptor: sl(),
     ),
   );
+  sl.registerLazySingleton<IRepositorySessions>(
+        () => RepositorySessions(
+      firebaseInterceptor: sl(),
+    ),
+  );
   //#endregion
 
   ///USE-CASES
@@ -86,6 +94,7 @@ Future<void> init() async {
   ///services
   sl.registerSingleton(NavigationService()); //to initialize navigator-key for app-runtime
   sl.registerSingleton(TokenService()); //token service to store token app-runtime
+  sl.registerSingleton(ConfigApp()); //singleton app-configs
   //logger
   sl.registerLazySingleton(
     () => Logger(
