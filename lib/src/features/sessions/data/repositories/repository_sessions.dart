@@ -11,22 +11,32 @@ class RepositorySessions implements IRepositorySessions{
   RepositorySessions({required this.firebaseInterceptor,});
 
   @override
-  Future<ApiResponse> createCourse(RequestBodySession body) async{
+  Future<ApiResponse> createSession(RequestBodySession body) async{
+    if(firebaseInterceptor.getAuth().currentUser?.uid==null){
+      //unauthorized
+      return ApiResponse(statusCode: 401,);
+    }
+
     String sessionId = firebaseInterceptor.getDocumentId(
       collectionName: Constants.tableSessions,
     );
+
+    List<String> lessonDaysSlug = [];
+    for(var day in body.lessonDays!){
+      lessonDaysSlug.add(day.slug!);
+    }
 
     return await firebaseInterceptor.insertDocument(
       collectionName: Constants.tableSessions,
       documentId: sessionId,
       json: {
         Session.keyId: sessionId,
-        Session.keyUserId: body.userId,
+        Session.keyUserId: firebaseInterceptor.getAuth().currentUser!.uid,
         Session.keyTitle: body.title,
         Session.keyDuration: body.duration,
         Session.keySessionTiming: body.sessionTiming,
         Session.keySameTiming: body.sameTiming,
-        Session.keyLessonDays: body.lessonDays,
+        Session.keyLessonDays: lessonDaysSlug,
         Session.keyLessonCount: body.lessonCount,
         Session.keyRecurrence: body.recurrence,
         Session.keyCreatedAt: body.createdAt,

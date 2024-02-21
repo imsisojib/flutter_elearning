@@ -34,8 +34,8 @@
   "chooseClassTimesDuringSemesterExample": "( مثال: كل أسبوع حصتان يومي الأثنين والخميس الساعة 6 مسءا)",
   "selectWeek": "كل أسبوع",
   "selectHours": "حصتان ",
-  "selectDays": "السبت, الأربعاء",
-  "selectTime": "الوقت",
+  "selectDays": "حدد الأيام",
+  "selectTime": "حدد الوقت",
   "allocateDifferentTimeForEachClass": "تخصيص ميعاد مختلف لكل حصة",
   "saveAndContinue": "حفظ و إستمرار",
 

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AdvanceDropDown<T> extends StatelessWidget {
+class AdvanceDropDown2<T> extends StatelessWidget {
   final String? hintText;
   final String? titleText;
   final TextStyle? tittleTextStyle;
   final String? additionalTittleText;
   final bool isMandatoryField;
-  final Widget? prefixIcon;
+  final Widget? icon;
   final bool enabled;
   final Function? onChanged;
   final Color? backgroundColor;
@@ -16,10 +16,10 @@ class AdvanceDropDown<T> extends StatelessWidget {
   final T? value;
   final double? width;
 
-  const AdvanceDropDown({
+  const AdvanceDropDown2({
     Key? key,
     this.hintText,
-    this.prefixIcon,
+    this.icon,
     this.enabled = true,
     this.onChanged,
     this.value,
@@ -38,7 +38,7 @@ class AdvanceDropDown<T> extends StatelessWidget {
 
     //for dark and light theme
     Color fillColor = theme.brightness==Brightness.light? AppColors.white : AppColors.topSheet;
-    Color borderColor = theme.brightness==Brightness.light? AppColors.grey400 : AppColors.popupStroke;
+    Color borderColor = theme.brightness==Brightness.light? AppColors.borderColorLight : AppColors.popupStroke;
 
     return Column(
       children: [
@@ -81,56 +81,35 @@ class AdvanceDropDown<T> extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: DropdownButtonFormField<T?>(
-            value: value,
-            items: items,
-            onChanged: (T? value){
-              onChanged?.call(value);
-            },
-            iconSize: 12.h,
-            icon: prefixIcon,
-            decoration: InputDecoration(
-              fillColor: backgroundColor?? fillColor,
-              filled: true,
-              contentPadding: EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 16.h),
-              //prefixIcon: prefixIcon,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: borderColor,
+        Container(
+          height: 65.h,
+          decoration: BoxDecoration(
+            border: Border.all(width: 2, color: borderColor,),
+            borderRadius: BorderRadius.circular(16),
+            color: AppColors.white,
+          ),
+          padding: EdgeInsets.symmetric(
+            vertical: 4.h,
+            horizontal: 4.w,
+          ),
+          child: Expanded(
+            child: DropdownButtonFormField<T?>(
+              value: value,
+              items: items,
+              onChanged: (T? value){
+                onChanged?.call(value);
+              },
+              iconSize: 12.h,
+              icon: icon,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: hintText,
+                hintStyle: theme.textTheme.bodyLarge?.copyWith(
+                  color: AppColors.textColorLabelLight,
                 ),
+                fillColor: AppColors.white,
+                filled: true,
               ),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: borderColor,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: borderColor,
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: borderColor,
-                ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: borderColor,
-                ),
-              ),
-              hintText: hintText,
-              hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.grey400,
-              ),
-              enabled: enabled,
             ),
           ),
         ),

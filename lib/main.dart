@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate_code/src/features/sessions/presentation/prov
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/providers/provider_common.dart';
 import 'package:flutter_boilerplate_code/src/features/language/presentation/providers/provider_language.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/providers/provider_sessions.dart';
 import 'di_container.dart' as di;
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => di.sl<ProviderCourses>()),
         ChangeNotifierProvider(create: (context) => di.sl<ProviderLanguage>()),
         ChangeNotifierProvider(create: (context) => di.sl<ProviderInvitations>()),
+        ChangeNotifierProvider(create: (context) => di.sl<ProviderSessions>()),
       ],
       child: const MyApp(),
     ),

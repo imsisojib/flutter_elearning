@@ -22,6 +22,7 @@ import 'package:flutter_boilerplate_code/src/features/courses/domain/interface_r
 import 'package:flutter_boilerplate_code/src/features/courses/presentation/providers/provider_courses.dart';
 import 'package:flutter_boilerplate_code/src/features/home/presentation/providers/provider_common.dart';
 import 'package:flutter_boilerplate_code/src/features/language/presentation/providers/provider_language.dart';
+import 'package:flutter_boilerplate_code/src/features/sessions/presentation/providers/provider_sessions.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -74,6 +75,7 @@ Future<void> init() async {
   sl.registerFactory(() => ProviderCourses(repositoryCourses: sl()));
   sl.registerFactory(() => ProviderLanguage(cacheRepository: sl()));
   sl.registerFactory(() => ProviderInvitations());
+  sl.registerFactory(() => ProviderSessions(repositorySessions: sl()));
 
   ///Interceptors
   sl.registerLazySingleton<IFirebaseDBInterceptor>(
