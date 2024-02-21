@@ -39,6 +39,8 @@ class LanguageKey{
   static const String selectTime = "selectTime";
   static const String allocateDifferentTimeForEachClass = "allocateDifferentTimeForEachClass";
   static const String saveAndContinue = "saveAndContinue";
+  static const String starDate = "startDate";
+  static const String endDate = "endDate";
 
   ///Invite Students
   static const String inviteStudents = "inviteStudents";

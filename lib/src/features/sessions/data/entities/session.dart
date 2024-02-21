@@ -5,7 +5,7 @@ class Session {
   static const String keyId = "id";
   static const String keyUserId = "userId";
   static const String keyTitle = "title";
-  static const String keyDuration = "duration";
+  static const String keyDuration = "duration_hr";
   static const String keyRecurrence = "recurrence";
   static const String keyLessonCount = "lesson_count";
   static const String keyLessonDays = "lesson_days";
@@ -13,12 +13,17 @@ class Session {
   static const String keySessionTiming = "session_timing";
   static const String keyCreatedAt = "created_at";
   static const String keyStatus = "status";
+  static const String keyStartDate = "start_date";
+  static const String keyEndDate = "end_date";
 
   ///FIELDS
   String? id;
   String? userId;
   String? title;
-  String? duration;
+  String? durationHr;
+
+  DateTime? startDate;
+  DateTime? endDate;
 
   String? recurrence; //daily(1) | weekly(5) | monthly(26) | yearly(312)
   int? lessonCount; //ex. if recurrence=weekly the options are only
@@ -34,7 +39,7 @@ class Session {
     this.id,
     this.userId,
     this.title,
-    this.duration,
+    this.durationHr,
     this.recurrence,
     this.lessonCount,
     this.lessonDays,
@@ -48,13 +53,15 @@ class Session {
     id = json[keyId] as String?;
     userId = json[keyUserId] as String?;
     title = json[keyTitle] as String?;
-    duration = json[keyDuration] as String?;
+    durationHr = json[keyDuration] as String?;
     recurrence = json[keyRecurrence] as String?;
     lessonCount = json[keyLessonCount] as int?;
     lessonDays = json[keyLessonDays] as List<String>?;
     sameTiming = json[keySameTiming] as bool?;
     sessionTiming = json[keySessionTiming] as Map<String, String>?;
     createdAt = json[keyCreatedAt] != null ? DateTime.parse("${json[keyCreatedAt]}") : null;
+    startDate = json[keyStartDate] != null ? DateTime.parse("${json[keyStartDate]}") : null;
+    endDate = json[keyEndDate] != null ? DateTime.parse("${json[keyEndDate]}") : null;
     status = json[keyStatus] as String?;
   }
 }

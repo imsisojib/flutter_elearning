@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate_code/src/features/sessions/data/models/day.d
 import 'package:flutter_boilerplate_code/src/features/sessions/data/models/recurrence.dart';
 import 'package:flutter_boilerplate_code/src/features/sessions/data/requestbodys/requestbody_session.dart';
 import 'package:flutter_boilerplate_code/src/features/sessions/domain/interface_repository_sessions.dart';
+import 'package:flutter_boilerplate_code/src/helpers/debugger_helper.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
@@ -76,6 +77,10 @@ class ProviderSessions extends ChangeNotifier{
     _requestBodySession?.createdAt = DateTime.now();
     _requestBodySession?.status = ECourseStatus.pending.name;
     var response = await repositorySessions.createSession(_requestBodySession!);
+    Debugger.debug(
+      title: "ProviderSessions.createSession() : response",
+      data: response.toString(),
+    );
     if(response.statusCode==200){
       Fluttertoast.showToast(msg: "Session is created.");
       Navigator.pushReplacementNamed(

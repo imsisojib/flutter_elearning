@@ -120,6 +120,9 @@ class AdvanceTextFormField2 extends StatelessWidget {
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: AppColors.textColorInputLight,
                     ),
+                    onChanged: (String value){
+                      onChanged?.call(value);
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: hintText,

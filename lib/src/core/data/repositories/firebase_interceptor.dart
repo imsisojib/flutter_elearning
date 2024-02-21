@@ -114,7 +114,7 @@ class FirebaseDBInterceptor implements IFirebaseDBInterceptor {
     } catch (e) {
       return ApiResponse(
         statusCode: 400,
-        result: "Failed to save!",
+        result: e,
       );
     }
   }

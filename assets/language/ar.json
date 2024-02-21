@@ -47,5 +47,7 @@
   "send": "إرسال",
   "sent": "تم الإرسال",
   "saturday": "السبت",
-  "classTime" : "وقت حصة"
+  "classTime" : "وقت حصة",
+  "startDate" : "تاريخ البدء",
+  "endDate" : "تاريخ الانتهاء"
 }

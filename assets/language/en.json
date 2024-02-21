@@ -47,5 +47,7 @@
   "send": "Send",
   "sent": "Sent",
   "saturday": "Saturday",
-  "classTime" : "classTime"
+  "classTime" : "classTime",
+  "startDate" : "Start Date",
+  "endDate" : "End Date"
 }

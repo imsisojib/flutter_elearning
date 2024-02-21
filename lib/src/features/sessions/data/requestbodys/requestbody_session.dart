@@ -16,8 +16,11 @@ class RequestBodySession {
   // 5 lessons max, monthly: 26 max this input change it to number instead of select
   List<int> lessonCountList = [];
 
+  DateTime? startDate;
+  DateTime? endDate;
+
   List<Day>? lessonDays;
-  bool sameTiming = false; //if same timing for all days
+  bool sameTiming = true; //if same timing for all days
   Map<String, String>? sessionTiming;
   String? sessionTimingForAll;
   DateTime? createdAt;
@@ -41,7 +44,7 @@ class RequestBodySession {
     id = session.id;
     userId = session.userId;
     title = session.title;
-    duration = session.duration;
+    duration = session.durationHr;
     //recurrence = session.recurrence;
     lessonCount = session.lessonCount;
     //lessonDays = session.lessonDays;

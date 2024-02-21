@@ -21,6 +21,8 @@ import 'package:flutter_boilerplate_code/src/resources/app_colors.dart';
 import 'package:flutter_boilerplate_code/src/resources/app_images.dart';
 import 'package:flutter_boilerplate_code/src/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:provider/provider.dart';
 
 class ScreenSessionCreate extends StatefulWidget {
@@ -73,7 +75,8 @@ class _ScreenSessionCreateState extends State<ScreenSessionCreate> {
                           providerSessions.requestBodySession = data;
                         },
                       ),
-                      AdvanceTextFormField2(
+                      AdvanceSelection2(
+                        initialValue: providerSessions.requestBodySession?.startDate!=null && providerSessions.requestBodySession?.endDate!=null ? "${providerSessions.requestBodySession?.startDate?.toIso8601String().substring(0,10)} - ${providerSessions.requestBodySession?.endDate?.toIso8601String().substring(0,10)}" : null,
                         hintText: LanguageKey.separationPeriodFromTo.tr,
                         keyboardType: const TextInputType.numberWithOptions(decimal: true,),
                         prefixIcon: SizedBox(
@@ -83,10 +86,103 @@ class _ScreenSessionCreateState extends State<ScreenSessionCreate> {
                             AppImages.iconDateEdit,
                           ),
                         ),
-                        onChanged: (String value){
-                          var data = providerSessions.requestBodySession;
-                          data?.duration = value;
-                          providerSessions.requestBodySession = data;
+                        onStartSelection: (){
+                          showModalBottomSheet(
+                              context: context,
+                              backgroundColor: Colors.white,
+                              useRootNavigator: true,
+                              useSafeArea: true,
+                              isScrollControlled: false,
+                              builder: (_) {
+                                return StatefulBuilder(builder: (_, state) {
+                                  return Selector<ProviderSessions, RequestBodySession?>(
+                                    shouldRebuild: (old, updated) => true,
+                                    builder: (_, requestBodySession, child) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            SizedBox(
+                                              width: MediaQuery.of(context).size.width,
+                                            ),
+                                            Text(
+                                              LanguageKey.select.tr,
+                                              style: theme.textTheme.displayMedium,
+                                            ),
+                                            SizedBox(height: 16.h,),
+                                            AdvanceSelection2(
+                                              initialValue: requestBodySession?.startDate?.toIso8601String().substring(0,10),
+                                              hintText: LanguageKey.starDate.tr,
+                                              keyboardType: const TextInputType.numberWithOptions(decimal: true,),
+                                              prefixIcon: SizedBox(
+                                                height: 24.h,
+                                                width: 24.h,
+                                                child: Image.asset(
+                                                  AppImages.iconDateEdit,
+                                                ),
+                                              ),
+                                              onStartSelection: ()async{
+                                                DateTime firstDate = DateTime(2000);
+                                                DateTime lastDate = DateTime(DateTime.now().year+10);
+                                                var startDate = await showDatePicker(context: context, firstDate: firstDate, lastDate: lastDate,);
+
+                                                var data = providerSessions.requestBodySession;
+                                                data?.startDate = startDate;
+                                                providerSessions.requestBodySession = data;
+
+                                              },
+                                            ),
+                                            SizedBox(height: 16.h,),
+                                            AdvanceSelection2(
+                                              initialValue: requestBodySession?.endDate?.toIso8601String().substring(0,10),
+                                              hintText: LanguageKey.endDate.tr,
+                                              keyboardType: const TextInputType.numberWithOptions(decimal: true,),
+                                              prefixIcon: SizedBox(
+                                                height: 24.h,
+                                                width: 24.h,
+                                                child: Image.asset(
+                                                  AppImages.iconDateEdit,
+                                                ),
+                                              ),
+                                              onStartSelection: () async {
+                                                DateTime firstDate = DateTime(2000);
+                                                DateTime lastDate = DateTime(DateTime.now().year+10);
+                                                var endDate = await showDatePicker(context: context, firstDate: firstDate, lastDate: lastDate,);
+
+                                                var data = providerSessions.requestBodySession;
+                                                data?.endDate = endDate;
+                                                providerSessions.requestBodySession = data;
+
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 24.h,
+                                            ),
+                                            BasicGradientButton(
+                                              buttonText: LanguageKey.continueText.tr,
+                                              onPressed: () {
+                                                if(providerSessions.requestBodySession?.startDate==null){
+                                                  Fluttertoast.showToast(msg: "Please select start date.");
+                                                  return;
+                                                }
+                                                if(providerSessions.requestBodySession?.endDate==null){
+                                                  Fluttertoast.showToast(msg: "Please select start date.");
+                                                  return;
+                                                }
+
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                    selector: (_, providerSessions) =>
+                                    providerSessions.requestBodySession,
+                                  );
+                                });
+                              });
                         },
                       ),
                       SizedBox(
@@ -181,6 +277,7 @@ class _ScreenSessionCreateState extends State<ScreenSessionCreate> {
                                       return Padding(
                                         padding: const EdgeInsets.all(16.0),
                                         child: Column(
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
                                             SizedBox(
                                               width: MediaQuery.of(context).size.width,
@@ -260,7 +357,7 @@ class _ScreenSessionCreateState extends State<ScreenSessionCreate> {
                       SizedBox(
                         height: 16.h,
                       ),
-                      !providerSessions.requestBodySession!.sameTiming
+                      providerSessions.requestBodySession!.sameTiming
                           ? AdvanceSelection2(
                               initialValue: providerSessions.requestBodySession?.sessionTimingForAll,
                               //textDirection: TextDirection.ltr,
@@ -288,7 +385,7 @@ class _ScreenSessionCreateState extends State<ScreenSessionCreate> {
                               },
                             )
                           : const SizedBox(),
-                      !providerSessions.requestBodySession!.sameTiming
+                      providerSessions.requestBodySession!.sameTiming
                           ? TextButton(
                               onPressed: () {
                                 var data = providerSessions.requestBodySession;
@@ -304,7 +401,7 @@ class _ScreenSessionCreateState extends State<ScreenSessionCreate> {
                               ),
                             )
                           : const SizedBox(),
-                      providerSessions.requestBodySession!.sameTiming
+                      !providerSessions.requestBodySession!.sameTiming
                           ? Column(
                               children: providerSessions.requestBodySession!.lessonDays!.map((day) {
                                 return Column(
